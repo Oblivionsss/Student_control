@@ -7,11 +7,14 @@ class AccountController extends Controller
 {
     public function loginAction()
     {
-        echo "Страница входа";
+        // if (!empty($_POST)) {
+            // $this->view->message("Добро Пожаловать!", "..");
+        // }
+        $this->view->render('Страница авторизации');
     }
 
     public function registerAction()
     {
-        echo "Страница регистрации";
+        $this->view->render('Страница регистрации');
     }
 }

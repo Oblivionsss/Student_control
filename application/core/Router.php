@@ -1,6 +1,7 @@
 <?php
 
 namespace application\core;
+// use application\core\View;
 
 class Router
 {
@@ -18,7 +19,7 @@ class Router
     // in {$routes}
     public function add($route, $param)
     {
-        $route  = '#^' . $route . '#';
+        $route  = '#^' . $route . '$#';
         $this->routes[$route] = $param;
     }
 
@@ -26,7 +27,7 @@ class Router
     public function match()
     {
         $url    = $_SERVER['REQUEST_URI'];
-        $url    = preg_replace('#^/mvc/#', '', $url);       // Обрезка лишнего в строке URL
+        $url    = trim($_SERVER['REQUEST_URI'], '/');       // Обрезка лишнего в строке URL
 
         foreach ($this->routes as $route => $params) {
             if (preg_match($route, $url, $matches)) {
@@ -34,6 +35,7 @@ class Router
                 return true;
             }
         }
+
         return false;
     }
 
@@ -43,22 +45,27 @@ class Router
     {
         if ($this->match()) {
             $path       = 'application\controllers\\' . ucfirst($this->params['controller']) . 'Controller';
+
             if (class_exists($path)){
                 $action = $this->params['action'] . 'Action';
+
                 if (method_exists($path, $action)) {
                     $controller = new $path($this->params);
                     $controller->$action();
                 }
+
                 else {
-                    echo "Не найден экшен";
+                    // View::errorCode(404);
                 }
             }
+
             else {
-                echo "Контроллер не найден " . $path;
+                // View::errorCode(404);            
             }
         }
+
         else {
-            echo "Не найден маршрут";
+            // View::errorCode(404);
         }
     }
 }
