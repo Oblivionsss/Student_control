@@ -1,5 +1,4 @@
-<p>Авторизация</p>
-<h1>Форма 1</h1>
+<h1>Авторизация</h1>
 <form action="" method="post"> 
     <p>Логин</p>
     <p><input type="text" 		name="login"></p>

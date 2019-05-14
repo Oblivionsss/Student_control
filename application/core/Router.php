@@ -1,7 +1,7 @@
 <?php
 
 namespace application\core;
-// use application\core\View;
+use application\core\View;
 
 class Router
 {
@@ -15,7 +15,7 @@ class Router
             $this->add($key, $value);        
     }
 
-    // add action and controller
+    // Add action and controller
     // in {$routes}
     public function add($route, $param)
     {
@@ -23,7 +23,7 @@ class Router
         $this->routes[$route] = $param;
     }
 
-    // Search pattern in currently URI
+    // Search pattern in current URI
     public function match()
     {
         $url    = $_SERVER['REQUEST_URI'];
@@ -55,17 +55,17 @@ class Router
                 }
 
                 else {
-                    // View::errorCode(404);
+                    View::errorCode(404);
                 }
             }
 
             else {
-                // View::errorCode(404);            
+                View::errorCode(404);            
             }
         }
 
         else {
-            // View::errorCode(404);
+            View::errorCode(404);
         }
     }
 }

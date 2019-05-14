@@ -14,5 +14,10 @@
         '' => [
             'controller'    => 'main',
             'action'        => 'index'
+        ],
+
+        'user' => [
+            'controller'    => 'user',
+            'action'        => 'index'
         ]
     ];

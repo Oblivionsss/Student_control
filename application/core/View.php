@@ -22,8 +22,9 @@ class View
     // main content 
     public function render($title, $vars=[])
     {
-        $link   = 'application/views/'. $this->path . '.php';
+        extract($vars);
 
+        $link   = 'application/views/'. $this->path . '.php';
         if (file_exists($link)) {
             ob_start();
             require $link;
@@ -54,7 +55,7 @@ class View
 
     
     // Create messege ansver 
-    // ansver sends Client
+    // Ansver sends Client
     public function message($status, $message) {
 		exit(json_encode(['status' => $status, 'message' => $message]));
 	}
