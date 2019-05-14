@@ -5,6 +5,6 @@
     <p>Пароль</p>
     <p><input type="password" 	        name="password"></p>
     <p>Подвердите пароль</p>
-    <p><input type="confirmPassword" 	name="confirmPassword"></p>
+    <p><input type="password" 	name="confirmPassword"></p>
     <p><input type="submit" 	        value="Зарегестрироваться"></p>
 </form>

@@ -54,6 +54,15 @@
         // Add new users
         public function add($sql, $params = []) {
             $result = $this->query($sql, $params);
-            return $db->lastInsertId();
+            return $this->db->lastInsertId();
+        }
+
+
+        public function getLogin ($sql, $params = []) {
+            $result = $this->query($sql, $params);
+            if ($result->fetchAll()) {
+                return 1;
+            }
+            else return 0;
         }
     }

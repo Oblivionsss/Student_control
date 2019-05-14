@@ -1,13 +1,17 @@
 <?php
 
 namespace application\lib;
-use PDO;
+use application\lib\Db;
+use application\lib\Hash;
 
 class Validation
 {
-    
+
+
     public static function checkPost($action)
     {
+        
+        $db = new Db;
         
         $hint  = '';               // Подсказка
         $login;
@@ -27,19 +31,21 @@ class Validation
         }
 
 
-        if ($action == "regist") {
-                            
-            // Проверка на "пустоту"
-            if (empty($login )) {      
-                $hint   .= "Вы не ввели логин\n";
-                return $hint;
-            }
-            
-            if (empty($password)) {    
-                $hint   .= "Вы не ввели пароль\n";
-                return $hint;
-            }
+        // Проверка на пустоту логина и пароля
+        if (empty($login )) {      
+            $hint   .= "Вы не ввели логин\n";
+            return $hint;
+        }
+        
+        if (empty($password)) {    
+            $hint   .= "Вы не ввели пароль\n";
+            return $hint;
+        }
 
+
+        if ($action == "regist") {
+            
+            // Проверка на "пустоту" подтверждения пароля
             if (empty($confirmPassword)) {
                 $hint   .= "Вы не ввели повторно пароль\n";
                 return $hint;
@@ -61,7 +67,6 @@ class Validation
                 return $hint;
             }
 
-
             else if (strlen($password) > 20) {
                 $hint   .= "Пароль слишком большой, длина пароля не должна превышать 20 символов\n";
                 return $hint;
@@ -79,8 +84,14 @@ class Validation
                 return $hint;
             }
             
+            
+            // Проверка на незанятость логина
+            if ($db->getLogin("SELECT login FROM users WHERE login=:login", array('login' => $login) )) {
+                $hint   .= "Данный логин уже занят, попробуйте другой";
+                return $hint;
+            }
 
-            // Проверка соответствия паролей
+            // Проверка соответствие паролей
             if ($confirmPassword != $password) { 
                 $hint   .= "Пароли не совпадают";
             }
@@ -88,5 +99,27 @@ class Validation
             return $hint;
         }
 
+        if ($action == "auth") {
+            
+            // Сперва проверяем существует ли user с таким логином 
+            if (!($db->getLogin("SELECT login FROM users WHERE login=:login", array('login' => $login)) )) {
+                $hint   .= "Неправильный логин или пароль";
+                return $hint;
+            }
+            
+            // Если логин существует проверяем пароль 
+            else {
+                $passDb  = $db->row("SELECT password FROM users WHERE login=:login", array('login' => $login));
+                if (!(Hash::verify($password, $passDb[0]['password']))) {
+                    $hint   .= "Неправильный логин или пароль";
+                    $passDb = 0;  // Сбрасываем буфер с хэш-паролем
+                    return $hint;
+                }
+                else {
+                    $passDb = 0;  //
+                    return $hint;
+                }
+            }   
+        }           
     } 
 }
