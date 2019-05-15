@@ -58,6 +58,7 @@
         }
 
 
+        // Получаем результат проверки логина
         public function getLogin ($sql, $params = []) {
             $result = $this->query($sql, $params);
             if ($result->fetchAll()) {

@@ -6,7 +6,7 @@ use application\lib\Hash;
 
 class Validation
 {
-
+    public static $currentLogin;
 
     public static function checkPost($action)
     {
@@ -110,13 +110,19 @@ class Validation
             // Если логин существует проверяем пароль 
             else {
                 $passDb  = $db->row("SELECT password FROM users WHERE login=:login", array('login' => $login));
+                
                 if (!(Hash::verify($password, $passDb[0]['password']))) {
                     $hint   .= "Неправильный логин или пароль";
+
                     $passDb = 0;  // Сбрасываем буфер с хэш-паролем
+                    
                     return $hint;
                 }
+                
                 else {
                     $passDb = 0;  //
+                    self::$currentLogin = $login;
+
                     return $hint;
                 }
             }   

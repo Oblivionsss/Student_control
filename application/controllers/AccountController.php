@@ -1,8 +1,12 @@
 <?php
 
 namespace application\controllers;
+
 use application\core\Controller;
+use application\core\Cookie;
+
 use application\lib\Validation;
+use application\lib\Hash;
 
 
 class AccountController extends Controller
@@ -13,14 +17,24 @@ class AccountController extends Controller
             $result = Validation::checkPost("auth");
 
             if ($result != '')
-                $this->view->message($result, " q");
+                $this->view->message($result, " qq");
 
             else {
-                // здесь нужно записать куки
-                // записать сессию
-                // редирект на личную страницу:
-                // $this->view->location("!!");
-                $this->view->message("Успешно авторизированы!", " q");
+                
+                $currentLogin = Validation::$currentLogin;
+                
+                if (Cookie::setCookie(Hash::hash(Cookie::generateSalt()), $currentLogin)) {
+                    //
+                
+                    session_start();
+                    $_SESSION['login']  = $currentLogin;
+                    $_SESSION['auth']   = true;
+
+                    $this->view->location('/user');
+                    exit;
+                }
+
+                $this->view->message("Ошибка переадресации, извините за временные неудобства", " q");
             }    
 
             exit;
@@ -32,12 +46,12 @@ class AccountController extends Controller
 
     public function registerAction()
     {
-        // // При передаче ajaxom второй метод обязателен!!
+ 
         if (!empty($_POST)) {
             $result = Validation::checkPost("regist");
             
             if ($result != '')
-                $this->view->message("$result", " q");
+                $this->view->message($result, " qq");
 
             else {
                 $check   = $this->model->addNewUser();
@@ -45,7 +59,7 @@ class AccountController extends Controller
                 // записать сессию
                 // редирект на личную страницу:
                 // $this->view->location("!!");
-                $this->view->message("Успешно зарегестрированы!", " q");
+                $this->view->message("Успешно зарегестрированы!", " qq");
             }            
             // $this->view->message("Успешно зарегестрированы!", "");
             exit;

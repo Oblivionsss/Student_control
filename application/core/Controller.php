@@ -1,6 +1,8 @@
 <?php
 
 namespace application\core;
+
+use application\core\Cookie;
 use application\core\View;
 
 abstract class Controller 
@@ -21,13 +23,16 @@ abstract class Controller
         //     exit;
         // }
         
+        // $this->checkCookie();
+
         $this->view     = new View($route);
         $this->model = $this->loadModel($route['controller']);
     }
 
-    
+    // Подключение модели 
     public function loadModel($name) {
-		$path = 'application\models\\'.ucfirst($name);
+        $path = 'application\models\\'.ucfirst($name);
+        
 		if (class_exists($path)) {
 			return new $path;
 		}
@@ -70,4 +75,10 @@ abstract class Controller
     {
         return in_array($this->route['action'], $this->ar[$str]);
     }  
+
+
+    // public function checkCookie()
+    // {
+    //     if (!isset($_COOKIE))
+    // }
 }
