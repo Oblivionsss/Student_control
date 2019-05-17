@@ -14,6 +14,7 @@
             require $path;
         }
     });
+    session_start();
 
     $router     = new Router;
     $router->run();

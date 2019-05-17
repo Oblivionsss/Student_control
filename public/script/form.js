@@ -19,7 +19,7 @@ $(document).ready(function() {
 				if (json.url) {
 					window.location.href = json.url;
 				} 
-				else if (json.status && json.message) {
+				else if (json.status && json.status) {
 					alert(json.status + ' - ' + json.message);
 				}
 			},

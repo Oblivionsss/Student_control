@@ -9,10 +9,11 @@ class Cookie
     // Прописываем cookie
     public static function setCookie($key, $login) 
     {
-        if (self::addCookieBase($key, $login)) {     // Обновляем данные пользователя
+        if (self::addCookieBase($key, $login)) {     // Обновляем куки пользователя
         
-            setcookie('id', $login, time() + (60 * 60 * 24 * 7));          // Логин на 7 дней
-            setcookie('key', $key, time() + (60 * 60 * 24 * 7));           // ключ на 7 дней
+            setcookie('id', $login, time() + (60 * 60 * 24 * 7), '/');          // Логин на 7 дней
+            setcookie('key', $key, time() + (60 * 60 * 24 * 7), '/');           // ключ на 7 дней
+            
             return true;
         }
         else return false;
@@ -43,5 +44,19 @@ class Cookie
                                 'cookie' =>$key));
 
         return true;
+    }
+
+    
+    public static function checkCookie ($key, $login)
+    {
+        $db     = new Db;
+
+        $sql     = "SELECT login FROM users WHERE login=:login AND cookie=:cookie";
+        if ($db->query($sql, array('login' => $login,
+                                'cookie' =>$key)))
+            return true;
+
+        else return false;
+        
     }
 }

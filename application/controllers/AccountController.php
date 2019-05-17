@@ -14,32 +14,21 @@ class AccountController extends Controller
     public function loginAction()
     {
         if (!empty($_POST)) {
-            $result = Validation::checkPost("auth");
+            $result = Validation::checkPost();
 
             if ($result != '')
                 $this->view->message($result, " qq");
 
             else {
-                
-                $currentLogin = Validation::$currentLogin;
-                
-                if (Cookie::setCookie(Hash::hash(Cookie::generateSalt()), $currentLogin)) {
-                    //
-                
-                    session_start();
-                    $_SESSION['login']  = $currentLogin;
-                    $_SESSION['auth']   = true;
-
-                    $this->view->location('/user');
-                    exit;
+                if (! $this->authen()) {           
+                    $this->view->message("Ошибка переадресации, извините за временные неудобства", " q");
                 }
-
-                $this->view->message("Ошибка переадресации, извините за временные неудобства", " q");
-            }    
+            }   
 
             exit;
         }
         
+
         $this->view->render('Страница авторизации');
     }
 
@@ -55,17 +44,34 @@ class AccountController extends Controller
 
             else {
                 $check   = $this->model->addNewUser();
-                // здесь нужно записать куки
-                // записать сессию
-                // редирект на личную страницу:
-                // $this->view->location("!!");
-                $this->view->message("Успешно зарегестрированы!", " qq");
+                
+                if (! $this->authen()) {           
+                    $this->view->message("Ошибка переадресации, извините за временные неудобства", " q");
+                }
             }            
-            // $this->view->message("Успешно зарегестрированы!", "");
-            exit;
+            // exit;
+        }
+        
+        if (!empty($_SESSION)) {
+            var_dump($_SESSION);
+        }
+        $this->view->render('Страница регистрации');
+    }
+
+
+    public function authen() {
+        $currentLogin = Validation::$currentLogin;
+                
+        if ($currentLogin) {    
+            
+            $_SESSION['login_user']  = $currentLogin;
+            $_SESSION['authorize']   = true;
+
+            $this->view->location('/user');
+            // exit;
         }
 
-        $this->view->render('Страница регистрации');
+        else return false;
     }
 
 }

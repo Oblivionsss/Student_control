@@ -8,7 +8,7 @@ class UserController extends Controller
     public function indexAction()
     {
         // test consctruct for view-user-info
-        $result = $this->model->getUserInfo();
+        $result = $this->model->getUserInfo($_SESSION['login_user'];
         $vars   = [
             'user'  => $result,
         ];

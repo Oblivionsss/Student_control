@@ -5,15 +5,12 @@ return [
     'all'       => [
         //
     ],
-    
+
     'authorize' => [
-        // 
+        'index'
     ],
 
     'guest'     => [
-        'register',
-        'login'
+        //
     ]
-
 ];
-

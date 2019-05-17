@@ -8,7 +8,7 @@ use application\lib\Hash;
 class Account extends Model
 {   
     // Добавление нового пользователя в БД
-    public function addNewUser()
+    public function addNewUser($login)
     {
         $this->params['password']  = Hash::hash($this->params['password']);
         

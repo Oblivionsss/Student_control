@@ -1,6 +1,7 @@
 <?php
 
 namespace application\lib;
+
 use application\lib\Db;
 use application\lib\Hash;
 
