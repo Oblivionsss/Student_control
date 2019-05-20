@@ -7,7 +7,10 @@ return [
     ],
 
     'authorize' => [
-        'index'
+        'index',
+        'create',
+        'setting',
+        'student'
     ],
 
     'guest'     => [

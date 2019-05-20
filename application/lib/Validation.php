@@ -7,8 +7,6 @@ use application\lib\Hash;
 
 class Validation
 {
-    public static $currentLogin;
-
     public static function checkPost($action)
     {
         
@@ -87,12 +85,12 @@ class Validation
             
             
             // Проверка на незанятость логина
-            if ($db->getLogin("SELECT login FROM users WHERE login=:login", array('login' => $login) )) {
+            if ($db->getLogin("SELECT login FROM teach_id WHERE login=:login", array('login' => $login) )) {
                 $hint   .= "Данный логин уже занят, попробуйте другой";
                 return $hint;
             }
 
-            // Проверка соответствие паролей
+            // Проверка соответствия паролей
             if ($confirmPassword != $password) { 
                 $hint   .= "Пароли не совпадают";
             }
@@ -103,14 +101,14 @@ class Validation
         if ($action == "auth") {
             
             // Сперва проверяем существует ли user с таким логином 
-            if (!($db->getLogin("SELECT login FROM users WHERE login=:login", array('login' => $login)) )) {
+            if (!($db->getLogin("SELECT login FROM teach_id WHERE login=:login", array('login' => $login)) )) {
                 $hint   .= "Неправильный логин или пароль";
                 return $hint;
             }
             
             // Если логин существует проверяем пароль 
             else {
-                $passDb  = $db->row("SELECT password FROM users WHERE login=:login", array('login' => $login));
+                $passDb  = $db->row("SELECT password FROM teach_id WHERE login=:login", array('login' => $login));
                 
                 if (!(Hash::verify($password, $passDb[0]['password']))) {
                     $hint   .= "Неправильный логин или пароль";
@@ -122,7 +120,6 @@ class Validation
                 
                 else {
                     $passDb = 0;  //
-                    self::$currentLogin = $login;
 
                     return $hint;
                 }

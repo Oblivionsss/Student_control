@@ -39,7 +39,7 @@ class Cookie
     {
         $db     = new Db;
 
-        $sql    = "UPDATE users SET cookie=:cookie WHERE login=:login";
+        $sql    = "UPDATE teach_id SET cookie=:cookie WHERE login=:login";
         $db->query($sql, array('login' => $login,
                                 'cookie' =>$key));
 
@@ -51,7 +51,7 @@ class Cookie
     {
         $db     = new Db;
 
-        $sql     = "SELECT login FROM users WHERE login=:login AND cookie=:cookie";
+        $sql     = "SELECT login FROM teach_id WHERE login=:login AND cookie=:cookie";
         if ($db->query($sql, array('login' => $login,
                                 'cookie' =>$key)))
             return true;

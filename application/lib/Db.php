@@ -8,7 +8,7 @@
     {
         protected $db;
 
-        // Create db-connect
+        // Подключение к бд
         public function __construct()
         {
             $params = require 'application/config/db.php';
@@ -30,8 +30,8 @@
         }
         
 
-        // Prepare sql request 
-        // and binding params
+        // Подготовка скьюль запроса
+        // Биндим параметры
         public function query($sql, $params = []) {
             $stmt = $this->db->prepare($sql);
             if (!empty($params)) {
@@ -44,21 +44,22 @@
         }
     
 
-        // Return sql-request on rows
+        // Возвращаем ответ
         public function row($sql, $params = []) {
             $result = $this->query($sql, $params);
             return $result->fetchAll();
         }
 
 
-        // Add new users
+        // Добавляем нового пользователя//
+        // teach_id; teach_info
         public function add($sql, $params = []) {
             $result = $this->query($sql, $params);
             return $this->db->lastInsertId();
         }
 
 
-        // Получаем результат проверки логина
+        // Проверка существования логина для авторизации
         public function getLogin ($sql, $params = []) {
             $result = $this->query($sql, $params);
             if ($result->fetchAll()) {
@@ -66,4 +67,6 @@
             }
             else return 0;
         }
+
+
     }

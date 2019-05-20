@@ -8,16 +8,25 @@ use application\lib\Hash;
 class Account extends Model
 {   
     // Добавление нового пользователя в БД
-    public function addNewUser($login)
+    public function addNewUser()
     {
         $this->params['password']  = Hash::hash($this->params['password']);
-        
-        $result = $this->db->add("INSERT INTO users
-        (login, password) VALUES (:login, :password)", $this->params);
+
+        // Добавление teach_id
+        $result = $this->db->add("INSERT INTO teach_id(login, password) 
+        VALUES (:login, :password)",
+        $this->params);
+
+        // Создаем teach_info
+        $result = $this->db->query("INSERT INTO teach_info(id) 
+        VALUES (:id)",
+        array('id' => $result));
+
         if ($result) 
             return $result;
         else return false;
     }
+
 
 
 

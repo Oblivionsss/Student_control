@@ -14,13 +14,13 @@ class AccountController extends Controller
     public function loginAction()
     {
         if (!empty($_POST)) {
-            $result = Validation::checkPost();
+            $result = Validation::checkPost("auth");
 
             if ($result != '')
                 $this->view->message($result, " qq");
 
             else {
-                if (! $this->authen()) {           
+                if (!$this->authen()) {           
                     $this->view->message("Ошибка переадресации, извините за временные неудобства", " q");
                 }
             }   
@@ -45,30 +45,25 @@ class AccountController extends Controller
             else {
                 $check   = $this->model->addNewUser();
                 
-                if (! $this->authen()) {           
+                if (!$this->authen()) {           
                     $this->view->message("Ошибка переадресации, извините за временные неудобства", " q");
                 }
             }            
-            // exit;
+            exit;
         }
         
-        if (!empty($_SESSION)) {
-            var_dump($_SESSION);
-        }
         $this->view->render('Страница регистрации');
     }
 
-
+    
     public function authen() {
-        $currentLogin = Validation::$currentLogin;
-                
-        if ($currentLogin) {    
+        if ($_POST['login']) {    
             
-            $_SESSION['login_user']  = $currentLogin;
+            $_SESSION['login_user']  = $_POST['login'];
             $_SESSION['authorize']   = true;
 
             $this->view->location('/user');
-            // exit;
+            exit;
         }
 
         else return false;

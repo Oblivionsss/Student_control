@@ -7,6 +7,6 @@
 </head>
 <body>
 	<?php echo $content; ?>
-	<a href="../application/core/Logout.php"><h4>Выход</h4></a>
+	
 </body>
 </html>

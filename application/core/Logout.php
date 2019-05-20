@@ -13,7 +13,6 @@
             unset ($_COOKIE['key']);
             unset ($_COOKIE['id']);
             session_destroy();
-
         }
     }
     exit;
