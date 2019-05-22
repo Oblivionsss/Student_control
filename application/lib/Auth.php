@@ -3,8 +3,10 @@
 namespace application\lib;
 
 use application\lib\Hash;
+use application\lib\Db;
 
 use application\core\Cookie;
+
 
 // АС - авторизированная сессия
 // ПД - есть права доступа на текущую страницу
@@ -14,7 +16,6 @@ class Auth
 {
     public static $ar;         // Массив с правами доступа
     public static $route;      // Текущий URI  
-
     
     public static function checkAuth($route) 
     {
@@ -137,8 +138,12 @@ class Auth
             // Если куки сходятся
             // Прописываем сессию и возвращаем true
             if (Cookie::setCookie(Hash::hash(Cookie::generateSalt()), $_COOKIE['id'])) {
-                $_SESSION['login_user']  = $_COOKIE['id'];
-                $_SESSION['authorize']   = true;
+                // $result = $this->db->query("SELECT ID FROM teach_id 
+                // WHERE login=:login",
+                // array('login' => $_SESSION['login_user']));
+                $_SESSION['login_user'] = $_COOKIE['id'];
+                $_SESSION['authorize']  = true;
+                // $_SESSION['id']         = $_result;
                 return true;
             }
 
@@ -147,6 +152,15 @@ class Auth
         
         }
         else return false;
+    }
+
+
+    public static function getId()
+    {
+        $db = new Db;
+
+        return $db->row("SELECT ID FROM teach_id WHERE login=:login",
+        array('login'   => $_SESSION['login_user']));
     }
  
 }

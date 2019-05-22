@@ -55,6 +55,8 @@
         // teach_id; teach_info
         public function add($sql, $params = []) {
             $result = $this->query($sql, $params);
+            if ($result->errorCode())
+                return $result;
             return $this->db->lastInsertId();
         }
 
@@ -68,5 +70,17 @@
             else return 0;
         }
 
+
+        //Создание таблицы 
+        public function createTable($sql, $params = []) {
+            $stmt = $this->db->prepare($sql);
+            if (!empty($params)) {
+                foreach ($params as $key => $val) {
+                    $stmt->bindValue(':'.$key, 'id_' . $val);
+                }
+            }
+            $stmt->execute();
+            return $stmt;
+        }
 
     }

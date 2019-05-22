@@ -1,5 +1,5 @@
 <h1>Регистрация</h1>
-<form action="" method="post"> 
+<form action="" method="post" class="account"> 
     <p>Логин</p>
     <p><input type="text" 		        name="login"></p>
     <p>Пароль</p>

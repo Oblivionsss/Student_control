@@ -14,7 +14,7 @@
 		</div>
 		
 		<div class="logout">
-			<a href="../application/core/Logout.php">Выход</a>
+			<a href="/application/core/Logout.php">Выход</a>
 		</div>
 	</header>
 
@@ -44,8 +44,133 @@
 		</div>
 
 		<div class="content_inner">
+			
+			<div class="block_input">
+
+				<label for="name" class="cols-sm-2 control-label">Добавить дисциплину</label>
+				<form id="disc" method="post" action="">
+		
+					<input type="hidden" name="disc" value="t"/>
+			
+					<div class="form-group">
+						<label for="name" class="cols-sm-2 control-label">Название дисциплины*</label>
+						<div class="cols-sm-10">
+							<div class="input-group">
+								<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+								<input type="text" class="form-control" name="NameDisc" value="" placeholder="Введите название дисциплины"/>
+							</div>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label for="name" class="cols-sm-2 control-label">Количество часов</label>
+						<div class="cols-sm-10">
+							<div class="input-group">
+								<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+								<input type="text" class="form-control" name="CountHours" value="" placeholder="Укажите количество часов дисциплины"/>
+							</div>
+						</div>
+					</div>
+					
+					<div class="form-group ">
+						<input type="submit" value="Добавить" class="btn btn-primary btn-lg btn-block login-buttonl" name="confirm"  placeholder="Зарегестрироваться"/>
+					</div>
+				</form>
+
+
+			</div>
+
+
+			<div class="block_input">
+
+				<label for="aj" class="cols-sm-2 control-label">Добавить группу</label>
+				<form id="group" method="post" action="">
+		
+					<input type="hidden" name="group" value="t"/>
+
+					<div class="form-group">
+						<label for="name" class="cols-sm-2 control-label">Название группы*</label>
+						<div class="cols-sm-10">
+							<div class="input-group">
+								<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+								<input type="text" class="form-control" name="nameGroups" value="" placeholder="Введите название группы"/>
+							</div>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label for="name" class="cols-sm-2 control-label">Курс*</label>
+						<div class="cols-sm-10">
+							<div class="input-group">
+								<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+								<input type="text" class="form-control" name="Course" value="" placeholder="Выберите курс"/>
+							</div>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label for="name" class="cols-sm-2 control-label">Выберите уровень образования*</label>
+						<div class="cols-sm-10">
+							<div class="input-group">
+								<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+								<input type="text" class="form-control" name="level" value="" placeholder="Укажите количество часов дисциплины"/>
+							</div>
+						</div>
+					</div>
+					
+					<div class="form-group ">
+						<input type="submit" value="Добавить" class="btn btn-primary btn-lg btn-block login-buttonl" name="confirm"  placeholder="Зарегестрироваться"/>
+					</div>
+				</form>
+			</div>
+
+
+			<div class="block_input">
+				
+				<label for="name" class="cols-sm-2 control-label">Добавить студента</label>
+				<form id="stud" method="post" action="">
+					<input type="hidden" name="stud" value="t"/>
+
+					<div class="form-group">
+						<label for="name" class="cols-sm-2 control-label">Имя студента*</label>
+						<div class="cols-sm-10">
+							<div class="input-group">
+								<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+								<input type="text" class="form-control" name="nameSt" value="" placeholder="Введите имя"/>
+							</div>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label for="name" class="cols-sm-2 control-label">Фамилия студента*</label>
+						<div class="cols-sm-10">
+							<div class="input-group">
+								<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+								<input type="text" class="form-control" name="nameSn" value="" placeholder="Введите фамилию"/>
+							</div>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label for="name" class="cols-sm-2 control-label">Группа</label>
+						<div class="cols-sm-10">
+							<div class="input-group">
+								<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+								<input type="text" class="form-control" name="Groups" value="" placeholder="Выберите группу"/>
+							</div>
+						</div>
+					</div>
+					<div class="form-group ">
+						<input type="submit" value="Добавить" class="btn btn-primary btn-lg btn-block login-buttonl" name="confirm"  placeholder="Зарегестрироваться"/>
+					</div>
+
+				</form>
+			</div>
+
+
 			<div class="block_input">
 			</div>
+
 		</div>
 	</div>
 

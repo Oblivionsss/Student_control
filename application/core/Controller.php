@@ -22,7 +22,10 @@ abstract class Controller
             View::errorCode(404);
             exit;
         }
-        else {    
+
+        else {
+            $_SESSION['id'] = Auth::getId()[0]['ID'];    
+            
             $this->view     = new View($route);
             $this->model    = $this->loadModel($route['controller']);
         }

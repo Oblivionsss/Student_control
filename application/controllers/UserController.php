@@ -17,10 +17,25 @@ class UserController extends Controller
 
 
     public function createAction() {
+
+        if (isset($_POST['disc'])) {
+            $this->view->message($this->model->addDisc('disc'), " q");
+            exit;
+        }
+
+        if (isset($_POST['group'])) {
+            echo $this->model->addGroup('group');
+            // $this->view->message($this->model->addGroup('group'), " q");
+            exit;
+        }
+
+
+
         $result = $this->model->getUserInfo($_SESSION['login_user']);
         $vars   = [
             'user'  => $result,
         ];
+
         $this->view->render('Редактор', $vars);
     }
 

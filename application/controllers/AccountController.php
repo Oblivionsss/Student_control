@@ -7,7 +7,7 @@ use application\core\Cookie;
 
 use application\lib\Validation;
 use application\lib\Hash;
-
+use application\lib\Auth;
 
 class AccountController extends Controller
 {
@@ -55,12 +55,13 @@ class AccountController extends Controller
         $this->view->render('Страница регистрации');
     }
 
-    
+
     public function authen() {
         if ($_POST['login']) {    
             
             $_SESSION['login_user']  = $_POST['login'];
             $_SESSION['authorize']   = true;
+            $_SESSION['id']          = Auth::getId();
 
             $this->view->location('/user');
             exit;
