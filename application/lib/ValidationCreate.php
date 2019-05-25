@@ -55,5 +55,41 @@ class ValidationCreate
             return $hint;
         }
 
+        if ($action == 'stud') {
+            // проверка на пустоту имени
+            if (!empty($_POST["nameSt"])) {
+                $nameSn   = $_POST["nameSt"];
+            } else return "Вы не указали имя";
+            
+            // Проверка на пустоту фамилии
+            if (!empty($_POST['nameSn'])) {
+                $nameSn  = $_POST['nameSn'];   
+            } else return "Вы не указали фамилию\n";
+            
+            if (!empty($_POST['groups_id'])) {
+                $groups  = $_POST['groups_id'];   
+            } else return "Вы не указали группу\n";
+            
+            return $hint;
+        }   
+
+
+
+        if ($action == 'discgroup') {
+            
+            // проверка на пустоту имени
+            // Добавить проверку на селект value = 0
+            if (!empty($_POST["groupselect"]))  {
+                $nameSn   = $_POST["groupselect"];
+            } else return "Вы не указали группу";
+            
+            // Проверка на пустоту фамилии
+            if (!empty($_POST['discselect'])) {
+                $nameSn  = $_POST['discselect'];   
+            } else return "Вы не указали дисциплину\n";
+                        
+            return $hint;
+        }
+
     }
 }

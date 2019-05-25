@@ -45,6 +45,10 @@
 
 		<div class="content_inner">
 			
+
+
+
+
 			<div class="block_input">
 
 				<label for="name" class="cols-sm-2 control-label">Добавить дисциплину</label>
@@ -77,8 +81,12 @@
 					</div>
 				</form>
 
-
 			</div>
+
+
+
+
+
 
 
 			<div class="block_input">
@@ -125,10 +133,14 @@
 			</div>
 
 
+
+
+
+
 			<div class="block_input">
 				
-				<label for="name" class="cols-sm-2 control-label">Добавить студента</label>
-				<form id="stud" method="post" action="">
+					<label for="name" class="cols-sm-2 control-label">Добавить студента</label>
+					<form id="stud" method="post" action="">
 					<input type="hidden" name="stud" value="t"/>
 
 					<div class="form-group">
@@ -151,15 +163,22 @@
 						</div>
 					</div>
 
-					<div class="form-group">
+					<div class="form-group"> 
 						<label for="name" class="cols-sm-2 control-label">Группа</label>
 						<div class="cols-sm-10">
 							<div class="input-group">
-								<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-								<input type="text" class="form-control" name="Groups" value="" placeholder="Выберите группу"/>
+								<!-- <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span> -->
+								<select class="form-control" name="groups_id" id="groups_id">
+								<option value="0">- выберите группу -</option>
+								<?php foreach($groups as $key=> $value) :?>
+									<option value="<?= $value['id'] ?>"><?= $value['NameOfGrups'] ?></option>
+<?php endforeach;?>
+								</select>
 							</div>
-						</div>
+
+						</div>	
 					</div>
+
 					<div class="form-group ">
 						<input type="submit" value="Добавить" class="btn btn-primary btn-lg btn-block login-buttonl" name="confirm"  placeholder="Зарегестрироваться"/>
 					</div>
@@ -168,10 +187,56 @@
 			</div>
 
 
-			<div class="block_input">
-			</div>
 
-		</div>
+
+
+			<div class="block_input">
+				
+				<label for="name" class="cols-sm-2 control-label">Связать дисциплину и группу</label>
+				<form id="discgroup" method="post" action="">
+					<input type="hidden" name="discgroup" value="t"/>
+					
+					<div class="form-group"> 
+						<label for="name" class="cols-sm-2 control-label">Группа</label>
+						<div class="cols-sm-10">
+							<div class="input-group">
+								<!-- <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span> -->
+								<select class="form-control" name="groupselect" id="groupselect_id">
+								<option value="0">- выберите группу -</option>
+								<?php foreach($groups as $key=> $value) :?>
+									<option value="<?= $value['id'] ?>"><?= $value['NameOfGrups'] ?></option>
+<?php endforeach;?>
+								</select>
+							</div>
+
+						</div>	
+					</div>
+
+					<div class="form-group"> 
+						<label for="name" class="cols-sm-2 control-label">Дисциплина</label>
+						<div class="cols-sm-10">
+							<div class="input-group">
+								<!-- <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span> -->
+								<select class="form-control" name="discselect" id="discselect_id">
+								<option value="0">- выберите дисциплину-</option>
+								<?php foreach($disc as $key=> $value) :?>
+									<option value="<?= $value['id'] ?>"><?= $value['Name'] ?></option>
+<?php endforeach;?>
+								</select>
+							</div>
+
+						</div>	
+					</div>
+					
+					
+					
+					
+
+					<div class="form-group ">
+						<input type="submit" value="Добавить" class="btn btn-primary btn-lg btn-block login-buttonl" name="confirm"  placeholder="Зарегестрироваться"/>
+					</div>
+				</form>
+			</div>
 	</div>
 
 

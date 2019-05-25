@@ -44,19 +44,25 @@
         }
     
 
-        // Возвращаем ответ
+        // Возвращаем ответ в виде строк
         public function row($sql, $params = []) {
             $result = $this->query($sql, $params);
             return $result->fetchAll();
         }
 
 
+        // Возвращаем ответ в виде столбцов
+        public function column($sql, $params = []) {
+            $result = $this->query($sql, $params);
+            return $result->fetchColumn();
+        }
+
         // Добавляем нового пользователя//
         // teach_id; teach_info
         public function add($sql, $params = []) {
             $result = $this->query($sql, $params);
-            if ($result->errorCode())
-                return $result;
+            // if ($result->errorCode())
+            //     return $result;
             return $this->db->lastInsertId();
         }
 

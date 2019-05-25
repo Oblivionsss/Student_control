@@ -1,5 +1,5 @@
 <link href="/public/style/reset.css" rel="stylesheet"  type="text/css" media="screen" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" />	
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" />		
 <link href="/public/style/user.css" rel="stylesheet"  type="text/css" media="screen" />	
 	
 <div class="container">

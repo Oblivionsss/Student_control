@@ -2,8 +2,10 @@
 <html>
 <head>
 	<title><?php echo $title; ?></title>
-	<!-- <script src="/public/script/jquery.js"></script>
-	<script src="/public/script/form.js"></script>  -->
+	<script src="/public/script/jquery.js"></script>
+	<script src="/public/script/form.js"></script> 
+	<!-- <script src="/public/script/select.js"></script>  -->
+	
 </head>
 <body>
 	<?php echo $content; ?>

@@ -13,7 +13,6 @@ abstract class Model {
         
         
         if (isset($_POST['login']) and isset($_POST['password'])) {
-            
             $this->params = array (
                 'login'     => $_POST['login'], 
                 'password'  => $_POST["password"]

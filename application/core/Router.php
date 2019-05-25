@@ -19,7 +19,7 @@ class Router
     // in {$routes}
     public function add($route, $param)
     {
-        $route  = '#^' . $route . '$#';
+        $route  = '#^' . $route;
         $this->routes[$route] = $param;
     }
 
@@ -30,6 +30,7 @@ class Router
         $url    = trim($_SERVER['REQUEST_URI'], '/');       // Обрезка лишнего в строке URL
 
         foreach ($this->routes as $route => $params) {
+            
             if (preg_match($route, $url, $matches)) {
                 $this->params = $params;
                 return true;
@@ -50,6 +51,8 @@ class Router
                 $action = $this->params['action'] . 'Action';
 
                 if (method_exists($path, $action)) {
+
+
                     $controller = new $path($this->params);
                     $controller->$action();
                 }

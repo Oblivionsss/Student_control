@@ -1,7 +1,8 @@
 <link href="/public/style/reset.css" rel="stylesheet"  type="text/css" media="screen" />	
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" />
 <link href="/public/style/user.css" rel="stylesheet"  type="text/css" media="screen" />	
-	
+
+	<script src="/public/script/select.js"></script> 
 <div class="container">
 
 	<header>
@@ -43,8 +44,27 @@
 			</div>
 		</div>
 
-		<div class="add">
+		<div>
+			<div>
+				<form action="#" method="get">
+					<p>Группа</p>
+					<select name="group_id" id="group_id">
+						<option value="0">- выберите группу -</option>
+						<?php foreach ($groups as $key => $value) : ?>
+						<option value="<?=$value['id_group']?>"><?=$value['NameOfGrups']?></option>
+<?php endforeach;?>
+					</select>
+					<p>Дисциплина</p>
+					<select name="disc_id" id="disc_id" disabled="disabled">
+						<option value="0">- выберите дисциплину -</option>
+					</select>
+				</form>
 
+			</div>
+<!-- 
+			<pre>
+			<?php var_dump($groups)?>
+			</pre> -->
 		</div>
 	</div>
 

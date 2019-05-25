@@ -65,6 +65,30 @@ class View
     // for clients
 	public function location($url) {
 		exit(json_encode(['url' => $url]));
-	}
+    }
+    
+
+    // Ответ для подгрузки данных в списках 
+    public function selectUpdate($disc) {
+        $mas    = array();
+
+
+        // Преобразуем данные для клиента
+        // в вид id-дисциплины => name - дисциплины
+        if (!empty($disc)) {
+
+            foreach ($disc as $key=> $value) {
+                $mas[] = array ('id_disc' => $value['id_disc'],
+                    'Name' => $value['Name']);
+            }
+
+            exit(json_encode(array( 'type' => 'succes',
+                                    'disc' => $mas)));
+        }
+
+
+        // exit(json_encode(['type' => 'error']));
+        // exit(json_encode(['status' => $status, 'message' => $message]));
+    }
 
 }

@@ -2,44 +2,44 @@
     return  [
         
         // Группа маршрутов авторизации
-        'account/login'     => [ 
+        'account/login#'     => [ 
             'controller'    => 'account',
             'action'        => 'login'
         ],
         
-        'account/register'  => [
+        'account/register#'  => [
             'controller'    => 'account',
             'action'        => 'register'
         ],
 
 
 
-        // Главная страница
-        ''      => [
-            'controller'    => 'main',
-            'action'        => 'index'
-        ],
-
-
-
+        
         // Группа маршрутов для личной страницы
-        'user'  => [
+        'user$#'  => [
             'controller'    => 'user',
             'action'        => 'index'
         ],
-
-        'user/student'  => [
+        
+        'user/student#'  => [
             'controller'    => 'user',
             'action'        => 'student'
         ],
-
-        'user/create'     => [
+        
+        'user/create#'     => [
             'controller'    => 'user',      //??
             'action'        => 'create'
         ],
-
-        'user/setting'      => [
+        
+        'user/setting#'      => [
             'controller'    => 'user',
             'action'        => 'setting'
+        ],
+        
+        
+        // Главная страница
+        '$#'      => [
+            'controller'    => 'main',
+            'action'        => 'index'
         ],
     ];
