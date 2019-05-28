@@ -412,7 +412,6 @@ class User extends Model
 
             $databefore = $this->db->row($sql); 
             
-            // echo "$lower<br>$up<br>$sort<br>$limit<br><br>";
             // Проверяем факт. строк 
             $rowBefore  = count($databefore);
 
@@ -440,13 +439,15 @@ class User extends Model
             // 
             
 
-            return $this->db->row($sql);
+            $data   = $this->db->row($sql);
+            asort($data);
+            return $data;
         }
 
         
         // Теперь получаем все даты верхней границы
         // Если дата запрос <= фактической границы семестра
-        if ($today  <= $uppDefault) {
+        if ( date('Y-m-d', strtotime("+1 DAY", strtotime($today))) <= $uppDefault ) {
             
             // Меняем метод сортировки
             $sort   = "ASC";
@@ -455,8 +456,8 @@ class User extends Model
             // Верхняя граница - факт.граница сема
             $up     = $uppDefault;
             
-            // echo "$lower<br>$up<br>$sort<br>$limit<br><br>";
-            
+            $limit  = 5 + $limit ;            
+
 
             //
             $sql = "SELECT DISTINCT datetime 
@@ -467,7 +468,7 @@ class User extends Model
             " LIMIT " . $limit;
             // 
             
-            
+
             // Получаем даты 
             $dateafter  = $this->db->row($sql);
         }
@@ -476,7 +477,8 @@ class User extends Model
             $sort   = "DESC";
             $lower  = $lowerDefault;
             $up     = $uppDefault;
-
+            $limit  = 10;
+            
 
             // 
             $sql = "SELECT DISTINCT datetime 
@@ -487,7 +489,10 @@ class User extends Model
             " LIMIT " . $limit;
             // 
 
-            return $this->db->row($sql);             
+
+            $data   = $this->db->row($sql);  
+            asort($data);
+            return $data;
         }
         // Объединим получившиеся данные
         $date = array_merge($databefore, $dateafter);

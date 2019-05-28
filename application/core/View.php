@@ -102,7 +102,6 @@ class View
                 $mas[] = array ('datetime' => $value['datetime']);
             }
 
-
             exit(json_encode(array( 'type' => 'succes',
                                     'date' => $mas)));
         }

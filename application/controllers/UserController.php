@@ -16,8 +16,7 @@ class UserController extends Controller
 
         if ( isset($_POST['addRasp']) ) {
 
-            // $this->view->message($this->model->addRasp(),'qq');
-            echo $this->model->addRasp();
+            $this->view->message($this->model->addRasp(),'qq');
         }
 
         // test consctruct for view-user-info
