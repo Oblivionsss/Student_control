@@ -35,8 +35,8 @@ $(document).ready(function () {
                 }
                 
                 else {
-                    var options = '';
-
+                    var options = '<option value="0">- выберите дисциплину -</option>';
+                                        
                     $(json.disc).each(function() {
                         options += '<option value="' + $(this).attr('id_disc') + '">' + $(this).attr('Name') + '</option>';
                     });

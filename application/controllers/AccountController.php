@@ -63,7 +63,7 @@ class AccountController extends Controller
             $_SESSION['authorize']   = true;
             $_SESSION['id']          = Auth::getId();
 
-            $this->view->location('/user');
+            $this->view->location('/user/rasp');
             exit;
         }
 

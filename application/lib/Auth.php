@@ -40,7 +40,7 @@ class Auth
         else if ($rules === 'guest') {
             
             if (self::checkCookie()) {
-                echo header("location: /user");
+                echo header("location: /user/rasp");
                 exit;
             }
 
@@ -87,7 +87,7 @@ class Auth
 
         elseif ( !(empty($_SESSION['authorize'])) and 
         !(self::Ar('authorize')) ) {
-            header("location: /user");
+            header("location: /user/rasp");
             exit;
         }
         

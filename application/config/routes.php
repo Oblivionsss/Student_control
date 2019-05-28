@@ -16,7 +16,7 @@
 
         
         // Группа маршрутов для личной страницы
-        'user$#'  => [
+        'user/rasp#'  => [
             'controller'    => 'user',
             'action'        => 'index'
         ],

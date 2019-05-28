@@ -25,7 +25,7 @@
 			<div class="container-menu">
 
 				<div class="menu-link">
-					<a href="/user">Расписание</a>
+					<a href="/user/rasp">Расписание</a>
 				</div>
 
 				<div class="menu-link">

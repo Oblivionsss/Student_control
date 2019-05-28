@@ -7,10 +7,26 @@ class UserController extends Controller
 {
     public function indexAction()
     {
+        if ( isset($_GET['group_id']) ) {
+
+            $this->view->selectUpdate($this->model->getUniqDiscInfo($_GET['group_id']));
+
+        }
+
+
+        if ( isset($_POST['addRasp']) ) {
+
+            // $this->view->message($this->model->addRasp(),'qq');
+            echo $this->model->addRasp();
+        }
+
         // test consctruct for view-user-info
         $result = $this->model->getUserInfo($_SESSION['login_user']);
+        $result1    = $this->model->getUniqGroupsInfo();
+        
         $vars   = [
             'user'  => $result,
+            'groups'=> $result1
         ];
         $this->view->render('Расписание', $vars);
         var_dump($result_1);        
@@ -68,13 +84,26 @@ class UserController extends Controller
     
     public function studentAction() {
 
+        if (isset($_GET['updateDate'])) {
+            $date = $this->model->getData();
+
+            $this->view->updateDateTableStudent($date);
+        }
+
+        if ( isset($_GET['group_id']) && isset($_GET['disc_id']) ) {
+            // $data = $this->model->getData();
+            
+            // if ($data === false) {
+            //     $this->view->message("Отсутствуют данные, пожалуйста, добавьте расписание!", 'qq');
+            // }
+
+            $list_student = $this->model->getListStud($_GET['group_id'], $_GET['disc_id'] );
+  
+            $this->view->updateTableStudentList($list_student);
+        }
+
         if ( isset($_GET['group_id']) ) {
-            // echo header("Location: /user/setting");
             $this->view->selectUpdate($this->model->getUniqDiscInfo($_GET['group_id']));
-            // echo $this->model->getUniqDiscInfo($_POST['group_id']);
-            // echo "qq";
-            // $this->view->selectUpdate(array());
-            // echo'qq';
         }
         
         

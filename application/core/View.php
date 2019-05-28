@@ -68,6 +68,50 @@ class View
     }
     
 
+    // Возврат списка студентов
+    public function updateTableStudentList($list) {
+        $mas    = array();
+        // Преобразуем данные для клиента
+        // в вид id-дисциплины => name - дисциплины
+        if (!empty($list)) {
+
+            foreach ($list as $key=> $value) {
+                $mas[] = array ('Name' => $value['Name'],
+                    'Surname'   => $value['Surname']);
+            }
+
+
+            exit(json_encode(array( 'type' => 'succes',
+                                    'list' => $mas)));
+        }
+
+
+        exit(json_encode(['type' => 'error']));
+        // exit(json_encode(['status' => $status, 'message' => $message]));
+    }
+
+
+    // Возврат дат
+    public function updateDateTableStudent($date) {
+        $mas    = array();
+        // Преобразуем данные для клиента
+
+        if (!empty($date)) {
+
+            foreach ($date as $key=> $value) {
+                $mas[] = array ('datetime' => $value['datetime']);
+            }
+
+
+            exit(json_encode(array( 'type' => 'succes',
+                                    'date' => $mas)));
+        }
+
+
+        exit(json_encode(['type' => 'error']));
+    }
+    
+
     // Ответ для подгрузки данных в списках 
     public function selectUpdate($disc) {
         $mas    = array();
@@ -87,8 +131,14 @@ class View
         }
 
 
-        // exit(json_encode(['type' => 'error']));
+        exit(json_encode(['type' => 'error']));
         // exit(json_encode(['status' => $status, 'message' => $message]));
+    }
+
+
+    public function updateDate($date)
+    {
+        exit(json_encode($date));
     }
 
 }
