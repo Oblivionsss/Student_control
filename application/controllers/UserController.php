@@ -84,9 +84,9 @@ class UserController extends Controller
     public function studentAction() {
 
         if (isset($_GET['updateDate'])) {
-            $date = $this->model->getData();
-
-            $this->view->updateDateTableStudent($date);
+            $date   = $this->model->getData();
+            $allDate= $this->model->getAllData($date);
+            $this->view->updateDateTableStudent($allDate);
         }
 
         if ( isset($_GET['group_id']) && isset($_GET['disc_id']) ) {
@@ -113,6 +113,7 @@ class UserController extends Controller
             'user'  => $result,
             'groups'=> $result1
         ];
+
         $this->view->render('Студенты', $vars);
     }
 }

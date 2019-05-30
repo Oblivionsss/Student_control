@@ -203,8 +203,8 @@ class User extends Model
 
                 $result = $this->db->query($sql,
                 array('id_teach'    => $_SESSION['id'],
-                        'id_group'          => $id_groups,
-                        'id_disc'           => $id_disc));
+                        'id_group'  => $id_groups,
+                        'id_disc'   => $id_disc));
 
                 return "Индивидуальная группа добавлена";
 
@@ -291,7 +291,7 @@ class User extends Model
     $up         = "2019-05-31";  // коонец семестра
     $repeat     = '';
 
-        if ($_POST === 0) {
+        if ($_POST['radio'] == 0) {
             $repeat = '+ 1 WEEK';
         }
         else $repeat = '+2 WEEK';
@@ -329,7 +329,8 @@ class User extends Model
 
     public function getListStud ($gr, $ds) {
         $table  = "id_" . $gr; 
-        $result = $this->db->row("SELECT student_list.Name, student_list.Surname
+        $result = $this->db->row("SELECT student_list.Name, student_list.Surname, " . 
+        $table . ".id_students 
         FROM " . $table . 
         ", student_list
         WHERE student_list.id = ". $table . ".id_students");
@@ -500,5 +501,54 @@ class User extends Model
         // Сортируем в порядке возрастания
         asort($date);
         return $date;
+    }
+
+
+    public function getAllData($data) 
+    {
+        // Определяем верхние и нижние значения массива
+        $lower = NULL;
+        $upper = NULL;
+        foreach($data as $arr)
+        {
+            foreach($arr as $key => $value)
+            {
+                if ($key == 'datetime' && ($value >= $upper))
+                {
+                    $upper = $value;
+                }
+            }
+        }
+
+        $lower     = $upper;
+        
+        foreach($data as $arr)
+        {
+            foreach($arr as $key => $value)
+            {
+                if ($key == 'datetime' && ($value <= $lower))
+                    $lower = $value;
+            }
+        }
+
+        // Имя таблицы 
+        $tablename  = "id_" . $_GET['group_id'] . "_" . $_GET['disc_id'];
+        
+        // Запрос, который возвращает все данные за нужный период 
+        $sql    = "SELECT datetime, id_students, status FROM " . $tablename .
+        " WHERE datetime between '" . $lower .
+        "' and '" . $upper ."'" .
+        " ORDER BY id_students, datetime ASC";
+        
+        $date   = $this->db->row($sql);
+        
+        $result = array();
+        // Группируем данные по датам
+        foreach($date as $key => $val)
+        {
+            $result[$val['id_students']][] = $val;
+        } 
+
+        return array($data, $result);
     }
 }

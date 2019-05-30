@@ -6,8 +6,7 @@ $(document).ready(function () {
     $('#disc_id').change(function() {
         // Если группа и дисциплина выбрана
         // Подгружаем данные
-        // alert($('#group_id').val());
-        // alert($('#disc_id').val());
+
 
         if ( ($('#group_id').val() != 0) &&
         ($('#disc_id').val() != 0) ) {
@@ -43,11 +42,11 @@ $(document).ready(function () {
                         $('table').append('<thead><tr><th style="border:none"></th><tr></thead><tbody></tbody>');
 
                         var options = '';
-                        var td = '<td></td><td></td><td></td><td></td>' +
-                                    '<td></td><td></td><td></td><td></td><td></td><td></td>';
                         
+                        // Формируем шаблон под столбец с ФИО студентами
+                        // Каждой записи будет соответствовать свой id;
                         $(json.list).each(function() {
-                            options += '<tr><td>' + $(this).attr('Name') + ' ' + $(this).attr('Surname') + 
+                            options += '<tr><td data-id-students="' + $(this).attr('id_students') + '">' + $(this).attr('Surname') + ' ' + $(this).attr('Name') + 
                             '</td>' + '</tr>';
                         });
                         
@@ -56,7 +55,7 @@ $(document).ready(function () {
                 },
             });
 
-
+            // Загружаем дату и данные по посещаемости
             $.ajax ({
                 url: 	'',
                 method: 'GET',
@@ -69,16 +68,35 @@ $(document).ready(function () {
                     json = 		jQuery.parseJSON(result);  
 
                     var options = '';
+
+                    // Формируем строку с датами
                     $(json.date).each(function(){
                         options += '<th>' + $(this).attr('datetime') + '</th>';
                     });
                     $('table > thead > tr:first-child').append(options);
-                    console.log(json);
+                    
+
+                    // Формируем строки с успеваемостью
+                    $(json.infoStud).each(function(index, value) {    
+
+                        $.each(this, function (key, values)  {
+                            options = '';
+                            
+                            $.each(values, function (keys, param){
+                                // console.log(key);
+                                // console.log(param['status']);
+                                if (param['status'] === null) {
+                                    options += '<td></td>';
+                                }
+                                else
+                                    options += '<td>' + param['status'] + '</td>';
+                            });
+
+                            $('[data-id-students="' + key + '"]').after(options);
+                        });
+                    });
                 },
             });
-
-
-
         }
     });
 });

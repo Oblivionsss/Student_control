@@ -73,7 +73,7 @@
                     <div class="input-group">
                         <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
                         <input type="text" class="form-control" name="name" value="<?=$user[0]['Matern']?>" placeholder="Введите Ваше имя"/>
-                    </div>
+                    </div>  
                 </div>
             </div>
 
