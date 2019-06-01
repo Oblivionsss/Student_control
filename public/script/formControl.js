@@ -75,7 +75,6 @@ $(document).ready(function () {
                     });
                     $('table > thead > tr:first-child').append(options);
                     
-
                     // Формируем строки с успеваемостью
                     $(json.infoStud).each(function(index, value) {    
 
