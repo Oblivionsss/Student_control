@@ -2,11 +2,13 @@
 
 namespace application\core;
 use application\core\View;
+use application\core\RouterApi;
 
 class Router
 {
     protected $routes   = [];
     protected $params   = [];
+  
     function __construct() 
     {
         $arr    = require 'application/config/routes.php';
@@ -52,7 +54,6 @@ class Router
 
                 if (method_exists($path, $action)) {
 
-
                     $controller = new $path($this->params);
                     $controller->$action();
                 }
@@ -68,7 +69,15 @@ class Router
         }
 
         else {
-            View::errorCode(404);
+            // Проверка на api
+            if (preg_match('#^/api#', $_SERVER['REQUEST_URI'], $matches)) {
+                
+                // Передаем данные роутов
+                $api    = new RouterApi();
+                $api->run();
+            }
+            else 
+                View::errorCode(404);
         }
     }
 }

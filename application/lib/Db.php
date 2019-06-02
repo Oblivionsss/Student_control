@@ -18,7 +18,8 @@
 			$opt    = array(
 				PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
 				PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
-			);
+            );
+            
 			
 			try {
                 $this->db = new PDO($sql, $params['user'], $params['password'], $opt);

@@ -13,9 +13,7 @@ class UserController extends Controller
 
         }
 
-
         if ( isset($_POST['addRasp']) ) {
-
             $this->view->message($this->model->addRasp(),'qq');
         }
 
@@ -28,7 +26,7 @@ class UserController extends Controller
             'groups'=> $result1
         ];
         $this->view->render('Расписание', $vars);
-        var_dump($result_1);        
+        
     }   
 
 
@@ -71,6 +69,7 @@ class UserController extends Controller
     }
 
 
+    // Редактор личных данных
     public function settingAction() {
         $result     = $this->model->getUserInfo($_SESSION['login_user']);
 

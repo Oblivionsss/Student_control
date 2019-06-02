@@ -22,7 +22,12 @@ class View
     // main content 
     public function render($title, $vars=[])
     {
+        // Если в URI есть /user - значит меняем шапку
+        if (preg_match('#^/user/#', $_SERVER['REQUEST_URI'], $matches)){
+            $this->layout   = 'defaultUser';
+        }
         extract($vars);
+
 
         $link   = 'application/views/'. $this->path . '.php';
         

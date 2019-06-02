@@ -21,7 +21,7 @@ $(document).ready(function() {
 						window.location.href = json.url;
 					} 
 					else if (json.status && json.status) {
-						alert(json.status + ' - ' + json.message);
+						alert(json.status);
 					}
 				},
 			});

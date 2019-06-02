@@ -20,83 +20,109 @@ class Auth
     public static function checkAuth($route) 
     {
         self::$route    = $route;
+
+        // Определяем группу пользователей
         $rules          = self::checkAr();      
 
-        // Дополнительная проверка с куками
-        // Сперва проверяем на ошибки
+
+        // Проверка на ошибки (отсутствие такой группы пользователец)
+        // @return string;
         if (!$rules) {
             return '404';
         }
         
 
         // Если АС, ПД, ?К
+        // существует авторизированная сессия
+        // права доступа - true
+        // уставнавливаем cookie
+        // @return bool
         else if ($rules === 'auth') {
             self::setCookie();
-            return true;
+            return "A";
         }
         
 
         // !АС, ПД, ?К 
-        else if ($rules === 'guest') {
-            
+        // отсутствует авторизированная сессия
+        // права доступа - true
+        else if ($rules === 'guest') {            
+            // проверка cookie 
+            // @return Location
             if (self::checkCookie()) {
                 echo header("location: /user/rasp");
                 exit;
             }
 
+            // @return string
             else {
-                return true;
+                return "NA";
             } 
         }
         
 
         // !АС, !ПД, ?К
+        // отсутствует авторизированная сессия
+        // права доступа - false 
         else if ($rules === 'guestNA') {            
-            
+            // проверка cookie
+            // @return bool
             if (self::checkCookie()) {
-                return true;
+                return "NA";
             }
 
+            // @return location
             else {
                 echo header("Location: /account/login");
             }
         } 
         
         
+        // для группы пользователей "All"
+        // @return bool
         else if ($rules == true)
-            return true;
+            return "all";
     }
     
     
     // Проверка групп пользователей
+    // на текущую страницу
     public static function checkAr()
     {
         self::$ar   = require 'application/ar/' . self::$route['controller'] . '.php';
         
-
+        // Права для "всех"
+        // @return bool
         if (self::Ar('all')) {
             return true;
         }
         
-
+        // Права для атворизированных 
+        // на "своей" странице
+        // @return string
         if ( !(empty($_SESSION['authorize'])) and 
         (self::Ar('authorize')) ) {    
             return 'auth';
         }
         
-
+        // Права для авторизированных
+        // но находящихся не на "своей" странице 
         elseif ( !(empty($_SESSION['authorize'])) and 
         !(self::Ar('authorize')) ) {
             header("location: /user/rasp");
             exit;
         }
         
-
+        // Права доступа для неавторизованных
+        // на "своей" странице
+        // @return string
         elseif ( empty($_SESSION['authorize']) and self::Ar('guest') ) {
             return 'guest';
         }
         
-
+        // Права доступа для неавторизованных
+        // не на "своей" странице
+        // @return string
         elseif ( empty($_SESSION['authorize']) and !(self::Ar('guest')) ) {
             return 'guestNA';
         } 
@@ -106,7 +132,6 @@ class Auth
         // 	return true;
         // }
         
-
         return false;
     }
 
@@ -119,9 +144,10 @@ class Auth
     }  
 
 
-    // Установка кук для текущей страницы
+    // Установка cookie для текущей страницы
     public static function setCookie()
     {
+        // Проверка на наличие авторизации
         if ( !(empty($_SESSION['authorize'])) ) {
             Cookie::setCookie(Hash::hash(Cookie::generateSalt()), $_SESSION['login_user']);
             return true;
@@ -134,27 +160,23 @@ class Auth
     public static function checkCookie()
     {
         if ( isset($_COOKIE['id']) and isset($_COOKIE['key']) ) {
-            
             // Если куки сходятся
             // Прописываем сессию и возвращаем true
             if (Cookie::setCookie(Hash::hash(Cookie::generateSalt()), $_COOKIE['id'])) {
-                // $result = $this->db->query("SELECT ID FROM teach_id 
-                // WHERE login=:login",
-                // array('login' => $_SESSION['login_user']));
+                
                 $_SESSION['login_user'] = $_COOKIE['id'];
                 $_SESSION['authorize']  = true;
-                // $_SESSION['id']         = $_result;
+
                 return true;
             }
-
             // Иначе возврат false
             else return false;
-        
         }
         else return false;
     }
 
-
+    // ??
+    // Получение id // 
     public static function getId()
     {
         $db = new Db;

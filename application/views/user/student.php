@@ -1,26 +1,5 @@
-<link href="/public/style/reset.css" rel="stylesheet"  type="text/css" media="screen" />	
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" />
-<link href="/public/style/user.css" rel="stylesheet"  type="text/css" media="screen" />	
-
 <script src="/public/script/select.js"></script> 
 <script src="/public/script/formControl.js"></script> 
-
-<div class="container">
-
-	<header>
-		<div class="logo">
-			Image
-		</div>
-
-		<div class="user">
-			<?php echo $user[0]['Name'] . " " . $user[0]['Matern']?>
-		</div>
-		
-		<div class="logout">
-			<a href="../application/core/Logout.php">Выход</a>
-		</div>
-	</header>
-
 
 	<div class="content">
 
@@ -31,7 +10,7 @@
 					<a href="/user/rasp">Расписание</a>
 				</div>
 
-				<div class="menu-link">
+				<div class="menu-link active">
 					<a href="/user/student">Студенты</a>
 				</div>
 
@@ -104,10 +83,3 @@
 		</div>
 	
 	</div>
-
-	<!-- Нижняя часть страницы -->
-	<div class="footer">
-	
-	</div>
-
-</div>

@@ -12,23 +12,27 @@ abstract class Controller
     public $view;
     public $route;
 
-    // Save route in local variable
+    // Реалзиация прав доступа и проверки авторизации
     public function __construct($route) 
     {
         $this->route    = $route;
 
-
-        if (Auth::checkAuth($this->route) === '404') {
+        // Проверка авторизации
+        $auth   = Auth::checkAuth($this->route);
+        // Если возврат ошибки, отображаем её 
+        
+        if ($auth === '404') {
             View::errorCode(404);
             exit;
         }
-
-        else {
-            $_SESSION['id'] = Auth::getId()[0]['ID'];    
-            
-            $this->view     = new View($route);
-            $this->model    = $this->loadModel($route['controller']);
+        // для авторизированной группы
+        else if ($auth  === 'A') {
+            $_SESSION['id'] = Auth::getId()[0]['ID'];
         }
+        
+        // Загрузка представления и модели
+        $this->view     = new View($route);
+        $this->model    = $this->loadModel($route['controller']);
     }
 
 

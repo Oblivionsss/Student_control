@@ -2,11 +2,19 @@ AddDefaultCharset utf-8
 
 RewriteEngine on
     RewriteBase /
+
+    #Переброс на api/index.php
+    #Для обработки запросов
+    #RewriteEngine On
+    #RewriteRule ^api/(.*)$ application/api/Index.php [NC,L]
+
+    #Перебрс всех обычных запросов на стартовую
+    #На стартовую страницу /index.php
+    RewriteEngine On    
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_URI} /+[^\.]+$
-
-    
     RewriteRule ^(.+[^/])$ %{REQUEST_URI}/ [R=301,L]
-    RewriteRule \.(php|htm|swf|fla|xml|ico|jpg|gif|png|js|css)$ - [L]
+    RewriteRule \.(php|htm|swf|fla|xml|ico|jpg|gif|png|js|css|woff)$ - [L]
     RewriteRule ^.*$ index.php [NC,L]
+   

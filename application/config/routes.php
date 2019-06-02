@@ -11,9 +11,7 @@
             'controller'    => 'account',
             'action'        => 'register'
         ],
-
-
-
+        
         
         // Группа маршрутов для личной страницы
         'user/rasp#'  => [
@@ -42,4 +40,5 @@
             'controller'    => 'main',
             'action'        => 'index'
         ],
+
     ];
