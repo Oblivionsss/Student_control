@@ -38,6 +38,22 @@ header {
     color: #444444;
 }
 
+.name {
+    color: rgb(96, 99, 107);
+    font-size: 20px;
+    padding: 15px;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.register {
+    width: 560px;
+    background: #fff;
+    border-radius: 10px;
+    position: relative;
+    padding: 55px 85px;
+}
+
 header > div {
     display: inline-block;
     padding: 10px;
@@ -103,9 +119,28 @@ label {
     align-items: flex-start;
 }
 
+.content-acc {
+    min-height: calc(100% - 120px);
+    width: 100%; 
+    padding-left: 15px;
+    padding-right: 15px;
+}
 .block_input {
     width: 35%;
     min-width: 300px;
+}
+
+.auth {
+    min-height: calc(100% - 120px);
+    width: 100%; 
+    padding-left: 15px;
+    padding-right: 15px;
+
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-around;
+    align-items: center;
 }
 
 
@@ -129,14 +164,12 @@ label {
 
 
 
+
 .footer {
     height: 60px;
     width: 100%;
     background-color: #333333;
-    
-    border-style: solid none none none;
-	border-width: 1px;
-	border-color: rgb(0, 123, 255);
+
 }
 
 

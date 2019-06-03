@@ -4,14 +4,11 @@
 namespace application\api;
 
 use application\core\Api;
+use application\api\models\UsersInfo;
 
-use application\lib\ValidationCreate;
-
-use application\api\models\Disciplyne;
-
-class DisciplyneApi extends Api
+class UsersInfoApi extends Api
 {
-    public $apiName = 'disc';
+    public $apiName = 'users_info';
 
 
     /**
@@ -33,45 +30,22 @@ class DisciplyneApi extends Api
      */
     public function viewAction()
     {
-        return $this->response('Method Not Allowed', 405);
-        // $user   = $this->model->getById($this->id);
+        $user   = $this->model->getById($this->id);
         
-        // return $this->response($user, 201);
+        return $this->response($user, 201);
     }
 
 
     /**
      * Метод POST
-     * Создание новой записи дисциплины
+     * Создание новой записи
      * Отсутсвует необходимость в создании данного метода
      * @return string
      */
 
     public function createAction()
     {
-        // Проверка данных
-        $result     = ValidationCreate::checkDate($this->apiName);
-
-        // Если проверка данных не прошла
-        // Возврат ошибки
-        if ($result != '') {
-            return $this->response($result, 404);
-        }
-
-        // Иначе добавляем новую дисциплину
-        else {
-
-            // Добавляем новую дисциплину в disciplyne
-            $result = $this->model->addDisc(
-                array('teach_id'  => $this->id,
-                'name'      => $this->requestParams['NameDisc'],
-                'hours'     => $this->requestParams['CountHours'])
-            );
-
-            return $this->response('Data updated', 201);
-        }
-
-
+        return $this->response('Method Not Allowed', 405);
     }
 
 

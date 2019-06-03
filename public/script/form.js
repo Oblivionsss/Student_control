@@ -7,9 +7,9 @@ $(document).ready(function() {
 				var formNm = $('#' + formID);
 
 			$.ajax({
-				url: 	$(this).attr('action'),
-				type:	$(this).attr('method'),
-				data: 		new FormData(this),
+				url: 	$(formNm).attr('action'),
+				type:	$(formNm).attr('method'),
+				data: 		new FormData(formNm),
 				cache: 					false,
 				contentType:			false,
 				processData:			false,
@@ -20,8 +20,8 @@ $(document).ready(function() {
 					if (json.url) {
 						window.location.href = json.url;
 					} 
-					else if (json.status && json.status) {
-						alert(json.status);
+					else if (json.status && json.message) {
+						alert(json.message);
 					}
 				},
 			});

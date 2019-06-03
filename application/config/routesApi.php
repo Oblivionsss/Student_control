@@ -3,10 +3,11 @@
 
         // Группа маршрутов API-Модуля
         'api/disc#'     => [
-            'controller'    => 'DisciplyneApi'
+            'controller'    => 'DisciplyneApi',
+            'model'         => 'Disciplyne'
         ],
 
-        'api/users#'    => [
+        'api/users/#'    => [
             'controller'    => 'UsersApi'
         ],
 
@@ -19,7 +20,12 @@
         ],
         
         'api/studentControl#'   => [
-            'controller'     => 'StudentControlApi'
+            'controller'    => 'StudentControlApi'
+        ],
+
+        'api/users_info#'   => [
+            'controller'    => 'UsersInfoApi',
+            'model'         => 'UsersInfo'
         ]
 
     ];

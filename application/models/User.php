@@ -14,8 +14,8 @@ class User extends Model
         // $this->db - метод класса app.\lib\Db
         $result = $this->db->row("SELECT Name, Surname, Matern, DateOfBirth 
         FROM teach_id 
-        INNER JOIN teach_info 
-        ON teach_id.ID = teach_info.id 
+        INNER JOIN users_info 
+        ON teach_id.ID = users_info.id 
         WHERE login=:login", 
         array("login" => $login));
         

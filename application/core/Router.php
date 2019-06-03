@@ -71,7 +71,7 @@ class Router
         else {
             // Проверка на api
             if (preg_match('#^/api#', $_SERVER['REQUEST_URI'], $matches)) {
-                
+
                 // Передаем данные роутов
                 $api    = new RouterApi();
                 $api->run();

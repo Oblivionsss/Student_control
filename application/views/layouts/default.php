@@ -12,20 +12,12 @@
 	
 </head>
 <body>
-<div class="container">
+<div class="containers">
 	<!-- Верхняя часть страницы -->
 	<header>
-		<div class="logo">
-			Image
-		</div>
-
-		<div class="user">
-			<?php echo $user[0]['Name'] . " " . $user[0]['Matern']?>
-		</div>
-		
-		<div class="logout">
-			<a href="/application/core/Logout.php">Выход</a>
-		</div>
+		<p class="name"> 
+			Система мониторинга успеваемости студентов РТУ
+		</p>
 	</header>
 	
 	<!-- Основная часть страницы -->

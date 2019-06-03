@@ -25,24 +25,43 @@ abstract class Api
     //Название метод для выполнения
     protected $action = ''; 
     
+    // Уникальный id пользователя
+    protected $id = '';
 
-    public function __construct() {
+    // Модель для работы с бд
+    protected $model;
+
+    public function __construct($name) {
         // header("Access-Control-Allow-Orgin: *");
         // header("Access-Control-Allow-Methods: *");
         // header("Content-Type: application/json");
 
+        // Для начала проверим доступ
+        if (isset ($_SESSION['authorize']) ) {
+            $this->id   = $_SESSION['id']; 
+        } 
+        // Если доступа нет, значит мы не авторизованны
+        // Доступ к ресурсам API заблокирован
+        else {
+            $this->response("Ограничение прав доступа", 403);
+            exit;
+        }
         //Массив GET параметров разделенных слешем
-        $this->requestUri = explode('/', trim($_SERVER['REQUEST_URI'],'/'));
+        $this->requestUri   = explode('/', trim($_SERVER['REQUEST_URI'],'/'));
         $this->requestParams = $_REQUEST;
+
+
+        // Подключение модели 
+        $this->model = $this->loadModel($name);
 
         //Определение метода запроса
         $this->method = $_SERVER['REQUEST_METHOD'];
 
-        if ($this->method == 'POST' && array_key_exists('HTTP_X_HTTP_METHOD', $_SERVER)) {
+        if ($this->method == 'POST' && isset($this->requestParams['method'])) {
             
-            if ($_SERVER['HTTP_X_HTTP_METHOD'] == 'DELETE') {
+            if ($_REQUEST['method'] == 'DELETE') {
                 $this->method = 'DELETE';
-            } else if ($_SERVER['HTTP_X_HTTP_METHOD'] == 'PUT') {
+            } else if ($_REQUEST['method'] == 'PUT') {
                 $this->method = 'PUT';
             } else {
                 throw new Exception("Unexpected Header");
@@ -67,8 +86,9 @@ abstract class Api
     }
 
     protected function response($data, $status = 500) {
-        header("HTTP/1.1 " . $status . " " . $this->requestStatus($status));
-        return json_encode($data);
+        // header("HTTP/1.1 " . $status . " " . $this->requestStatus($status));
+        exit(json_encode(['status' => $status, 
+                    'data'     => $data]));
     }
 
     private function requestStatus($code) {
@@ -109,11 +129,14 @@ abstract class Api
 
     // Загрузка модели 
     public function loadModel($name) {
-        $path = 'application\models\\'.ucfirst($name);
+        $path = 'application\api\models\\'. $name;
         
 		if (class_exists($path)) {
 			return new $path;
-		}
+        }
+        else {
+            throw new RuntimeException('Method not exist', 405);
+        }
     }
 
 

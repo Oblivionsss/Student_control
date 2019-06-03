@@ -1,3 +1,4 @@
+<script src="/public/script/setting/settingDate.js"></script> 
 	<div class="content">
 
 		<div class="menu">
@@ -26,10 +27,10 @@
 
 			<div class="block_input">
 
-				<label for="name" class="cols-sm-2 control-label">Добавить дисциплину</label>
-				<form id="disc" method="post" action="">
+				<label for="name" class="cols-sm-2 control-label">Нажмите чтобы добавить дисциплину</label>
+				<form id="disc" method="POST" action="/api/disc/">
 		
-					<input type="hidden" name="disc" value="t"/>
+					<!-- <input type="hidden" name="disc" value="t"/> -->
 			
 					<div class="form-group">
 						<label for="name" class="cols-sm-2 control-label">Название дисциплины*</label>
@@ -62,11 +63,9 @@
 
 
 
-
-
 			<div class="block_input">
 
-				<label for="aj" class="cols-sm-2 control-label">Добавить группу</label>
+				<label for="aj" class="cols-sm-2 control-label">Нажмите, чтобы добавить группу</label>
 				<form id="group" method="post" action="">
 		
 					<input type="hidden" name="group" value="t"/>
@@ -114,7 +113,7 @@
 
 			<div class="block_input">
 				
-					<label for="name" class="cols-sm-2 control-label">Добавить студента</label>
+					<label for="name" class="cols-sm-2 control-label">Нажмите, чтобы добавить студентов</label>
 					<form id="stud" method="post" action="">
 					<input type="hidden" name="stud" value="t"/>
 
@@ -167,7 +166,7 @@
 
 			<div class="block_input">
 				
-				<label for="name" class="cols-sm-2 control-label">Связать дисциплину и группу</label>
+				<label for="name" class="cols-sm-2 control-label">Нажмите, чтобы связать дисциплину и группу</label>
 				<form id="discgroup" method="post" action="">
 					<input type="hidden" name="discgroup" value="t"/>
 					

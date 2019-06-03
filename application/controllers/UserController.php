@@ -69,7 +69,7 @@ class UserController extends Controller
     }
 
 
-    // Редактор личных данных
+    // Редактор личных данных 
     public function settingAction() {
         $result     = $this->model->getUserInfo($_SESSION['login_user']);
 
@@ -81,7 +81,7 @@ class UserController extends Controller
     
     
     public function studentAction() {
-
+        
         if (isset($_GET['updateDate'])) {
             $date   = $this->model->getData();
             $allDate= $this->model->getAllData($date);

@@ -3,7 +3,7 @@
 namespace application\core;
 use application\lib\Db;
 
-abstract class Model {
+abstract class ModelApi {
 
 	public $db;
 

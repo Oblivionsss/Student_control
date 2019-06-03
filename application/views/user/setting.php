@@ -1,4 +1,5 @@
-	<div class="content">
+<script src="/public/script/setting/settingDate.js"></script> 
+    <div class="content">
 
 		<div class="menu">
 			<div class="container-menu">
@@ -25,8 +26,8 @@
 		<div class="content-inner">
            
             <div class="block_input input-center ">
-            <form class="setting" method="post" action="">
-
+            <form class="setting" method="POST" action="/api/users_info/" id="setting">
+            <input type="hidden" name="method" value='PUT'>
                 <div class="form-group">
                     <label for="name" class="cols-sm-2 control-label">Имя</label>
                     <div class="cols-sm-10">
@@ -42,7 +43,7 @@
                     <div class="cols-sm-10">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-                            <input type="text" class="form-control" name="SName" value="" placeholder="Введите Ваше имя"/>
+                            <input type="text" class="form-control" name="Surname" value="" placeholder="Введите Ваше имя"/>
                         </div>
                     </div>
                 </div>
@@ -52,7 +53,7 @@
                     <div class="cols-sm-10">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-                            <input type="text" class="form-control" name="PName" value="" placeholder="Введите Ваше имя"/>
+                            <input type="text" class="form-control" name="Matern" value="" placeholder="Введите Ваше имя"/>
                         </div>  
                     </div>
                 </div>
@@ -62,7 +63,7 @@
                             <label for="username" class="cols-sm-2 control-label">Год рождения</label>
                         <div class="input-group">
                             <span class="input-group-addon input-group-half"><i class="fa fa-users fa" aria-hidden="true"></i></span>
-                            <input type="date" class="form-control" value="" name="dateOfBirth"/>
+                            <input type="date" class="form-control" value="" name="DateOfBirth"/>
                         </div>
                     </div>
                 </div>
@@ -72,13 +73,13 @@
                             <label for="name" class="cols-sm-2 control-label">Яндекс диск</label>
                         <div class="input-group">
                             <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-                            <input type="text" class="form-control" name="yandexD" value="" placeholder="Ссылка на ваш ЯД"/>
+                            <input type="text" class="form-control" name="YD" value="" placeholder="Ссылка на ваш ЯД"/>
                         </div>  
                     </div>
                 </div>
 
                 <div class="form-group ">
-                    <input type="submit" value="Добавить" class="btn btn-primary btn-lg btn-block login-buttonl" name="confirm"  placeholder="Зарегестрироваться"/>
+                    <input type="submit" value="Обновить" class="btn btn-primary btn-lg btn-block login-buttonl" name="confirm"  placeholder="Зарегестрироваться"/>
                 </div>
             </form>
             </div>

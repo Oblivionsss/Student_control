@@ -55,7 +55,7 @@ class RouterApi
             if (class_exists($path)){
                 
                 if (method_exists($path, 'run')) {
-                    $controller = new $path();
+                    $controller = new $path($this->params['model']);
 
                     $controller->run();
                 }

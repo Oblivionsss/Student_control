@@ -57,7 +57,7 @@ $(document).ready(function () {
                 // $('#disc_id').val() !== 0) {
                     var formID = $(this).attr('id'); // Получение ID формы
                     var formNm = $('#' + formID);
-                    
+                    $.cookie
                         $.ajax({
                             url: 	$(this).attr('action'),
                             type:	$(this).attr('method'),
