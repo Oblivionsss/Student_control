@@ -1,13 +1,21 @@
-<?php
+<?php // Модель работы с данными сущности disciplyne
 
+namespace application\api\models;
 
-$result = $this->db->add("INSERT INTO disciplyne(teach_id, Name, Hours) 
-            VALUES (:teach_id, :name, :hours)",
-            array('teach_id'  => $_SESSION['id'],
-            'name'      => $_POST['NameDisc'],
-            'hours'     => $_POST['CountHours']));
-            
-            if ($result) {
-                return "Дисциплина успешно добавлена!";
-            }
-            else return "Ошибка при добавлении дисциплины";
+use application\core\ModelApi;
+
+class Disciplyne extends ModelApi
+{
+    public function addDisc ($mas)
+    {
+        $sql = "INSERT INTO disciplyne(teach_id, Name, Hours) 
+        VALUES (:teach_id, :name, :hours)";
+
+        $result = $this->db->add($sql, $mas);
+                
+        if ($result) {
+            return true;
+        }
+        return false;
+    }
+}

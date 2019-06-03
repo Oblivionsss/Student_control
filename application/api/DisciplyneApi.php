@@ -34,9 +34,7 @@ class DisciplyneApi extends Api
     public function viewAction()
     {
         return $this->response('Method Not Allowed', 405);
-        // $user   = $this->model->getById($this->id);
-        
-        // return $this->response($user, 201);
+        //
     }
 
 
@@ -67,11 +65,12 @@ class DisciplyneApi extends Api
                 'name'      => $this->requestParams['NameDisc'],
                 'hours'     => $this->requestParams['CountHours'])
             );
-
-            return $this->response('Data updated', 201);
+            
+            // Ошибка обновления
+            if ($result == true)
+                return $this->response('Data updated', 201);
+            else return $this->response("Ошибка добавления данных", 404);
         }
-
-
     }
 
 
@@ -83,20 +82,7 @@ class DisciplyneApi extends Api
      */
     public function updateAction()
     {
-        // Проверка на валидацию
-        // Получение всех необходимых переменных
-        // Запрос в бд на обновление данных 
-        $user   = $this->model->update(
-            array ('Name'   => $this->requestParams['Name'],
-                'Surname'   => $this->requestParams['Surname'],
-                'Matern'    => $this->requestParams['Matern'],
-                'DateOfBirth' => $this->requestParams['DateOfBirth'],
-                'YD'        => $this->requestParams['YD'],
-                'id'        => $this->id)
-        );
-        
-        // возрат статуса апдейта
-        return $this->response('Data updated', 201);
+        return $this->response('Method Not Allowed', 405);
     }
 
     /**

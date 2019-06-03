@@ -1,4 +1,4 @@
-<script src="/public/script/setting/settingDate.js"></script> 
+<script src="/public/script/create/form.js"></script> 
 	<div class="content">
 
 		<div class="menu">
@@ -66,7 +66,7 @@
 			<div class="block_input">
 
 				<label for="aj" class="cols-sm-2 control-label">Нажмите, чтобы добавить группу</label>
-				<form id="group" method="post" action="">
+				<form id="group" method="POST" action="/api/disc/">
 		
 					<input type="hidden" name="group" value="t"/>
 

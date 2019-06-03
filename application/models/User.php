@@ -23,36 +23,6 @@ class User extends Model
     }
 
 
-    // Добавляем новую дисциплину
-    public function addDisc($change)
-    {
-        if(!empty($_POST)) {
-            $result     = ValidationCreate::checkDate($change);
-
-            // Если нашли ошибку в валидации, возвращаем её в контроллер
-            if ($result != '') {
-                return $result;
-            }
-
-            // Иначе
-            else {
-                // Добавляем новую дисциплину в disciplyne
-                // echo"qq";
-                $result = $this->db->add("INSERT INTO disciplyne(teach_id, Name, Hours) 
-                VALUES (:teach_id, :name, :hours)",
-                array('teach_id'  => $_SESSION['id'],
-                'name'      => $_POST['NameDisc'],
-                'hours'     => $_POST['CountHours']));
-                
-                if ($result) {
-                    return "Дисциплина успешно добавлена!";
-                }
-                else return "Ошибка при добавлении дисциплины";
-            }
-        }
-        else return "//";
-    }
-
     // Добавляем новую группу
     public function addGroup($change)
     {
