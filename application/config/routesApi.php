@@ -12,7 +12,8 @@
         ],
 
         'api/groups#'   => [
-            'controller'    => 'GroupsApi'
+            'controller'    => 'GroupsApi',
+            'model'         => 'Groups'
         ],
 
         'api/student#'  => [

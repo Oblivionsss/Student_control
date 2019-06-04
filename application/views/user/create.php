@@ -66,9 +66,8 @@
 			<div class="block_input">
 
 				<label for="aj" class="cols-sm-2 control-label">Нажмите, чтобы добавить группу</label>
-				<form id="group" method="POST" action="/api/disc/">
+				<form id="groups" method="POST" action="/api/groups/">
 		
-					<input type="hidden" name="group" value="t"/>
 
 					<div class="form-group">
 						<label for="name" class="cols-sm-2 control-label">Название группы*</label>

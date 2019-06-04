@@ -37,7 +37,7 @@ class ValidationCreate
             return $hint;
         }
 
-        if ($action == 'group') {
+        if ($action == 'groups') {
             // Проверка на пустоту названия дисциплины
             if (!empty($_POST["nameGroups"])) {
                 $disc   = $_POST["nameGroups"];

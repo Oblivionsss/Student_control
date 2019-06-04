@@ -21,71 +21,7 @@ class User extends Model
         
         return $result;
     }
-
-
-    // Добавляем новую группу
-    public function addGroup($change)
-    {
-        if(!empty($_POST)) {
-            $result     = ValidationCreate::checkDate($change);
-
-            // Если нашли ошибку в валидации, возвращаем её в контроллер
-            if ($result != '') {
-                return $result;
-            }
-
-            // Иначе
-            else {
-
-                $namegr     = $_POST['nameGroups'];
-                $course     = $_POST['Course'];
-                $step       = $_POST['level'];
-                
-                // Добавляем новую группу
-                // echo"qq";
-                // Делаем запрос на существование группы
-                $result = $this->db->row("SELECT id 
-                FROM groups_id
-                WHERE NameOfGrups=:namegr",
-                array('namegr'  => $namegr));
-
-                if ( !empty($result) ) {
-                    return "Такая группа уже существует";
-                }
-
-                // Если группы нет такой
-                // Добавляем, получаем id
-                $result = $this->db->add("INSERT INTO groups_id(NameOfGrups, Course, Step) 
-                VALUES (:namegr, :course, :step)",
-                array('namegr'  => $namegr,
-                'course'        => $course,
-                'step'          => $step));
-                
-                // return "Ошибка, попробуйте снова";
-
-
-                // Добавляем группу-список студентов с использованием в названии id
-                // tablename : Имя группы = "id" + id по groups_id
-                // groups_id.id является внешним ключом для tablename  
-                $tablename  = "id_" . $result;
-                
-                $result     = $this->db->query("CREATE TABLE " . $tablename. "(
-                id_students INT(11) NOT NULL,
-                FOREIGN KEY (id_students) REFERENCES student_list(id) ON DELETE CASCADE )");
-
-                return "Группа добавлена";
-
-                // $result     = $this->db->query("CREATE TABLE " . $tablename. "(
-                // date DATE, 
-                // id_students INT(11) NOT NULL,
-                // vars VARCHAR(70) NOT NULL,
-                // FOREIGN KEY (id_students) REFERENCES groups_id(id) ON DELETE CASCADE )");
-
-            }
-        }
-        else return "//";
-    }
-
+    
 
     public function addStud()
     {
