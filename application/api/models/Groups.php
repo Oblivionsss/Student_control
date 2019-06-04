@@ -28,4 +28,15 @@ class Groups extends ModelApi
 
         return;
     }
+
+    // Получаем все группы
+    public function getAll()
+    {
+        $sql    = "SELECT id, NameOfGrups
+        FROM groups_id";
+        
+        $result = $this->db->row($sql);
+
+        return $result;
+    }
 }

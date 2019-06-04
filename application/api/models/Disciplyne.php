@@ -6,6 +6,7 @@ use application\core\ModelApi;
 
 class Disciplyne extends ModelApi
 {
+    // Добавляем дисциплину
     public function addDisc ($mas)
     {
         $sql = "INSERT INTO disciplyne(teach_id, Name, Hours) 
@@ -17,5 +18,16 @@ class Disciplyne extends ModelApi
             return true;
         }
         return false;
+    }
+
+    // Получаем все дисциплины
+    public function getAll()
+    {
+        $sql    = "SELECT id, Name
+        FROM disciplyne";
+        
+        $result = $this->db->row($sql);
+
+        return $result;
     }
 }

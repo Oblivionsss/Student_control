@@ -7,8 +7,9 @@
             'model'         => 'Disciplyne'
         ],
 
-        'api/users/#'    => [
-            'controller'    => 'UsersApi'
+        'api/groups_disc/#'    => [
+            'controller'    => 'GroupsDiscApi',
+            'model'         => 'GroupsDisc'
         ],
 
         'api/groups#'   => [
@@ -17,7 +18,8 @@
         ],
 
         'api/student#'  => [
-            'controller'    => 'StudentApi'
+            'controller'    => 'StudentApi',
+            'model'         => 'Student'
         ],
         
         'api/studentControl#'   => [

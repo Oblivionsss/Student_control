@@ -22,6 +22,13 @@ class GroupsApi extends Api
     public function indexAction()
     {   
         // Нет необходимости в реализации данного метода
+        // Определяем тип возвращаемых данных
+        if (!isset($this->requestParams['uniq'])) {
+            $this->viewAction();
+        }
+        
+
+
         return $this->response('Method Not Allowed', 405);
     }
 
@@ -33,10 +40,12 @@ class GroupsApi extends Api
      */
     public function viewAction()
     {
-        $namegr     = $this->requestParams['nameGroups'];
+        $result     = $this->model->getAll();
 
-        return $this->response('Method Not Allowed', 405);
-        //
+        if (!empty($result))
+            return $this->response($result, 201);
+        else return $this->response("Данных по запросу нет", 202);
+
     }
 
 

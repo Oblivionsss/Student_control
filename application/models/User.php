@@ -23,50 +23,6 @@ class User extends Model
     }
     
 
-    public function addStud()
-    {
-        if(!empty($_POST)) {
-            $result     = ValidationCreate::checkDate('stud');
-
-
-            // Если нашли ошибку в валидации, возвращаем её в контроллер
-            if ($result != '') {
-                return $result;
-            }
-
-            
-            // Добавляем студента в student_list
-            // Получаем id студента
-            else {
-                $result = $this->db->add("INSERT INTO student_list(Name, Surname, id_group) 
-                VALUES (:nameSt, :nameSn, :groups)",
-                array('nameSt'  => $_POST['nameSt'],
-                'nameSn'        => $_POST['nameSn'],
-                'groups'        => $_POST['groups_id']));
-
-                
-                // Теперь добавляем студента в группу прототип
-                // Подготавливаем переменные для запроса
-
-                $id_stud    = $result;
-                $id_groups  = $_POST['groups_id'];
-
-                
-                // Формируем название таблицы
-                $tablename  = "id_" . $id_groups;
-                $sql    = "INSERT INTO " . $tablename. "(id_students)
-                VALUES(:id)";
-                $result     = $this->db->query($sql,
-                array ('id' => $id_stud));
-                    
-                return "Студент добавлен";
-            }
-
-        }
-        return "Ошибка добавления, пожалуйста перезагрузите страницу";
-    }
-
-
     public function addDiscGroup() {
         if(!empty($_POST)) {
             $result     = ValidationCreate::checkDate('discgroup');

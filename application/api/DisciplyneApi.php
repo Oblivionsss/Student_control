@@ -21,6 +21,11 @@ class DisciplyneApi extends Api
      */
     public function indexAction()
     {   
+        // Определяем тип возвращаемых данных
+        if (!isset($this->requestParams['uniq'])) {
+            $this->viewAction();
+        }
+        
         // Нет необходимости в реализации данного метода
         return $this->response('Method Not Allowed', 405);
     }
@@ -33,8 +38,12 @@ class DisciplyneApi extends Api
      */
     public function viewAction()
     {
-        return $this->response('Method Not Allowed', 405);
-        //
+        $result     = $this->model->getAll();
+
+        if (!empty($result))
+            return $this->response($result, 201);
+        else return $this->response("Данных по запросу нет", 202);
+
     }
 
 

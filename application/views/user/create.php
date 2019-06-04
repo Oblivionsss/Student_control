@@ -1,4 +1,5 @@
 <script src="/public/script/create/form.js"></script> 
+<script src="/public/script/create/updateGroup.js"></script> 
 	<div class="content">
 
 		<div class="menu">
@@ -112,9 +113,9 @@
 
 			<div class="block_input">
 				
-					<label for="name" class="cols-sm-2 control-label">Нажмите, чтобы добавить студентов</label>
-					<form id="stud" method="post" action="">
-					<input type="hidden" name="stud" value="t"/>
+				<label for="name" class="cols-sm-2 control-label">Нажмите, чтобы добавить студентов</label>
+					<form id="stud" method="POST" action="/api/student/">
+					
 
 					<div class="form-group">
 						<label for="name" class="cols-sm-2 control-label">Имя студента*</label>
@@ -143,9 +144,7 @@
 								<!-- <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span> -->
 								<select class="form-control" name="groups_id" id="groups_id">
 								<option value="0">- выберите группу -</option>
-								<?php foreach($groups as $key=> $value) :?>
-									<option value="<?= $value['id'] ?>"><?= $value['NameOfGrups'] ?></option>
-<?php endforeach;?>
+						
 								</select>
 							</div>
 
@@ -174,11 +173,9 @@
 						<div class="cols-sm-10">
 							<div class="input-group">
 								<!-- <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span> -->
-								<select class="form-control" name="groupselect" id="groupselect_id">
+								<select class="form-control" name="groups_id" id="groupselect_id">
 								<option value="0">- выберите группу -</option>
-								<?php foreach($groups as $key=> $value) :?>
-									<option value="<?= $value['id'] ?>"><?= $value['NameOfGrups'] ?></option>
-<?php endforeach;?>
+								
 								</select>
 							</div>
 
@@ -190,11 +187,8 @@
 						<div class="cols-sm-10">
 							<div class="input-group">
 								<!-- <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span> -->
-								<select class="form-control" name="discselect" id="discselect_id">
+								<select class="form-control" name="disc_id" id="disc">
 								<option value="0">- выберите дисциплину-</option>
-								<?php foreach($disc as $key=> $value) :?>
-									<option value="<?= $value['id'] ?>"><?= $value['Name'] ?></option>
-<?php endforeach;?>
 								</select>
 							</div>
 

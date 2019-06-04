@@ -55,7 +55,7 @@ class ValidationCreate
             return $hint;
         }
 
-        if ($action == 'stud') {
+        if ($action == 'student') {
             // проверка на пустоту имени
             if (!empty($_POST["nameSt"])) {
                 $nameSn   = $_POST["nameSt"];

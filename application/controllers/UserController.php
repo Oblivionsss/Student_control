@@ -31,12 +31,6 @@ class UserController extends Controller
 
 
     public function createAction() {
-        
-        if (isset($_POST['stud'])) {
-            // echo $this->model->addStud();
-            $this->view->message($this->model->addStud(), " q");
-            exit;
-        }
 
         if (isset($_POST['discgroup'])) {
             // echo $this->model->addDiscGroup();
