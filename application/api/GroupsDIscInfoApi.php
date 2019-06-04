@@ -1,17 +1,13 @@
-<?php   // student_list 
-// Валидация для юзера
+<?php   // модель, для работы с данными teach_group_disc_info (добавляем дату расписания и периодичность)
 
 namespace application\api;
 
 use application\core\Api;
+use application\api\models\UsersInfo;
 
-use application\lib\ValidationCreate;
-
-use application\api\models\Student;
-
-class StudentApi extends Api
+class GroupsDiscInfoApi extends Api
 {
-    public $apiName = 'student';
+    public $apiName = 'groups_disc_info';
 
 
     /**
@@ -33,49 +29,48 @@ class StudentApi extends Api
      */
     public function viewAction()
     {
+        // $user   = $this->model->getById(
+        //         'id'    => $this->id);
+        
+        // return $this->response($user, 201);
+        
         return $this->response('Method Not Allowed', 405);
     }
 
 
     /**
      * Метод POST
-     * Создание новой записи группы
+     * Создание новой записи
+     * Отсутсвует необходимость в создании данного метода
      * @return string
      */
+
     public function createAction()
     {
-        $result     = ValidationCreate::checkDate($this->apiName);
-
-        // Возврат ошибки
-        if ($result != '') {
-            return $this->response($result, 404);
-        }
-
-        // Добавляем студента в student_list
-        // Получаем id студента
-        else {
-            // Добавление группы
-            $result = $this->model->addStud(
-                array('nameSt'  => $_POST['nameSt'],
-                'nameSn'        => $_POST['nameSn'],
-                'groups'        => $_POST['groups_id'])
-            );
-
-            return $this->response('Data updated', 201);
-        }
+        // Сначала валидация ><
+        // Затем добавляем данные
+        $result     = $this->model->addRasp(
+            array('id'  => $this->requestParams['disc_id'],
+                'date'  => $this->requestParams['date'],
+                'rep'   => $this->requestParams['radio'],
+                'par'   => $this->requestParams['pars'],
+                'hall'  => $this->requestParams['lectureHall'])
+        );
+        
+        return $this->response('Data updated', 201);
     }
 
 
     /**
      * Метод PUT
      * Обновление отдельной записи (по ее id)
+     * параметры запроса ФИО, д.р, ссылка YD;
      * @return string
      */
     public function updateAction()
     {
         return $this->response('Method Not Allowed', 405);
     }
-
 
     /**
      * Метод DELETE
@@ -87,4 +82,6 @@ class StudentApi extends Api
     {
         return $this->response('Method Not Allowed', 405);
     }
+
 }
+

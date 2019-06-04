@@ -1,4 +1,4 @@
-<?php 
+<?php   // модель работы с данными сущности users_info
 // Валидация для юзера
 
 namespace application\api;
@@ -30,7 +30,8 @@ class UsersInfoApi extends Api
      */
     public function viewAction()
     {
-        $user   = $this->model->getById($this->id);
+        $user   = $this->model->getById(
+                'id'    => $this->id);
         
         return $this->response($user, 201);
     }
@@ -52,14 +53,14 @@ class UsersInfoApi extends Api
     /**
      * Метод PUT
      * Обновление отдельной записи (по ее id)
-     * параметры запроса Name, Surname, Mattern, DateOfBirth, yanDSK
+     * параметры запроса ФИО, д.р, ссылка YD;
      * @return string
      */
     public function updateAction()
     {
         // Проверка на валидацию
         // Получение всех необходимых переменных
-        // Запрос в бд на обновление данных 
+        // Запрос в бд на обновление данных     
         $user   = $this->model->update(
             array ('Name'   => $this->requestParams['Name'],
                 'Surname'   => $this->requestParams['Surname'],

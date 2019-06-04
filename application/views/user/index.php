@@ -1,4 +1,3 @@
-<script src="/public/script/addDate.js"></script> 
 
 
 	<div class="content">
@@ -30,8 +29,7 @@
 			
 			<div class="block_input">
 				
-				<form action="#" method="post" id="add">
-				<input type="hidden" name="addRasp" value="t"/>
+				<form action="/api/groups_disc_info/" method="POST" id="add">
 
 					<label for="name" class="cols-sm-2 control-label">Добавить занятие</label>
 						
@@ -39,11 +37,8 @@
 							<label for="name" class="cols-sm-2 control-label">Группа</label>
 							<div class="cols-sm-10">
 								<div class="input-group">
-									<select class="form-control"	name="group_id" id="group_id">
+									<select class="form-control"	name="group_id" id="group_id" disabled="disabled">
 										<option value="0">- выберите группу -</option>
-										<?php foreach ($groups as $key => $value) : ?>
-										<option value="<?=$value['id_group']?>"><?=$value['NameOfGrups']?></option>
-<?php endforeach;?>
 									</select>
 								</div>
 							</div>
@@ -56,7 +51,7 @@
 								<div class="input-group">
 									<select class="form-control" name="disc_id" id="disc_id" disabled="disabled">
 										<option value="0">- выберите дисциплину -</option>
-									</select>
+									</select>	
 								</div>
 							</div>
 						</div>
@@ -67,6 +62,7 @@
 								<div class="input-group">
 									<input  type="radio"	id="radio1"  	name="radio" 	value="0" checked> еженедельно <br>
 									<input  type="radio"	id="radio2"		name="radio" 	value="1"> каждые две недели <br>
+									<input  type="radio"	id="radio2"		name="radio" 	value="2"> один раз <br>
 								</div>
 							</div>
 						</div>
@@ -80,6 +76,33 @@
 								</div>
 							</div>
 						</div>
+
+						<div class="form-group">
+							<label for="name" class="cols-sm-2 control-label">Время занятий</label>
+								<div class="cols-sm-10">
+									<div class="input-group">
+									<select class="form-control" name="pars">
+										<option value="0">- Укажите пару -</option>
+										<option value="1"> Первая пара </option>
+										<option value="2"> Вторая пара </option>
+										<option value="3"> Третья пара </option>
+										<option value="4"> Четвертая пара </option>
+										<option value="5"> Пятая пара </option>
+										<option value="6"> Шестая пара </option>
+									</select>	  
+								</div>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label for="name" class="cols-sm-2 control-label">Аудитория</label>
+							<div class="cols-sm-10">
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+									<input type="text" class="form-control" name="lectureHall" value="" placeholder="укажите аудиторию"/>
+								</div>
+							</div>
+						</div>
 						
 						<div class="form-group ">
 							<input type="submit" value="Добавить" class="btn btn-primary btn-lg btn-block login-buttonl" name="confirm"  placeholder="Зарегестрироваться"/>
@@ -90,6 +113,7 @@
 			</div>
 		</div>
 	</div>
+<script src="/public/script/rasp/addDate.js"></script> 
 
 
 

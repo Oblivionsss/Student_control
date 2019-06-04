@@ -7,23 +7,17 @@ class UserController extends Controller
 {
     public function indexAction()
     {
-        if ( isset($_GET['group_id']) ) {
-
-            $this->view->selectUpdate($this->model->getUniqDiscInfo($_GET['group_id']));
-
-        }
-
         if ( isset($_POST['addRasp']) ) {
             $this->view->message($this->model->addRasp(),'qq');
         }
 
         // test consctruct for view-user-info
         $result = $this->model->getUserInfo($_SESSION['login_user']);
-        $result1    = $this->model->getUniqGroupsInfo();
+        
+        // $result1    = $this->model->getUniqGroupsInfo();
         
         $vars   = [
-            'user'  => $result,
-            'groups'=> $result1
+            'user'  => $result
         ];
         $this->view->render('Расписание', $vars);
         

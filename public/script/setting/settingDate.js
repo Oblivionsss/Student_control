@@ -25,20 +25,20 @@ $(document).ready(function() {
             
             // Получаем гет ответ
             else if (json.status && json.status == 201) {
-                    $('input').each(function() {
-                        // Если существует пересечение name формы
-                        // и ключей объекта json.data
-                        // значит заполняем данными
+                $('input').each(function() {
+                    // Если существует пересечение name формы
+                    // и ключей объекта json.data
+                    // значит заполняем данными
 
-                        // Ключ
-                        var key     = $(this).attr('name');
-                        
-                        // Значение
-                        var value   = json.data[0][$(this).attr('name')];
-                        
-                        if( key ) {
-                            $(this).attr( 'value', value );
-                        }
+                    // Ключ
+                    var key     = $(this).attr('name');
+                    
+                    // Значение
+                    var value   = json.data[0][$(this).attr('name')];
+                    
+                    if( key ) {
+                        $(this).attr( 'value', value );
+                    }
                 });
             }
         },

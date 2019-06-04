@@ -1,4 +1,4 @@
-<?php // Модель работы с данными сущности disciplyne
+<?php // Модель работы с данными сущности groups_id
 
 namespace application\api\models;
 
@@ -29,13 +29,28 @@ class Groups extends ModelApi
         return;
     }
 
-    // Получаем все группы
+    // Список всех групп
     public function getAll()
     {
         $sql    = "SELECT id, NameOfGrups
         FROM groups_id";
         
         $result = $this->db->row($sql);
+
+        return $result;
+    }
+
+    // Список групп, по которым существует 
+    // учетная карточка по данному преподавателя
+    public function getAllUniq($mas)
+    {
+        $sql    = "SELECT DISTINCT teach_group_disc.id_group, groups_id.NameOfGrups  
+        FROM teach_group_disc
+        INNER JOIN groups_id
+        ON teach_group_disc.id_group = groups_id.id
+        WHERE teach_group_disc.id_teach = :id";
+
+        $result = $this->db->row($sql, $mas);
 
         return $result;
     }

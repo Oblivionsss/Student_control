@@ -1,3 +1,4 @@
+// Загрузка групп и дисциплин
 $(document).ready(function () {
 
         // req     += "&uniq=" + true;

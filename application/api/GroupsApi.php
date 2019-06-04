@@ -1,5 +1,4 @@
-<?php 
-// Валидация для юзера
+<?php   // groups_id
 
 namespace application\api;
 
@@ -20,16 +19,16 @@ class GroupsApi extends Api
      * @return string
      */
     public function indexAction()
-    {   
-        // Нет необходимости в реализации данного метода
-        // Определяем тип возвращаемых данных
-        if (!isset($this->requestParams['uniq'])) {
-            $this->viewAction();
-        }
-        
+    {           
+        // Если существует параметр uniq -
+        // Возвращаем данные всех групп, которые доступны для данного преподавателя
+        $result     = $this->model->getAllUniq(
+            array('id'  => $this->id
+        ));
 
-
-        return $this->response('Method Not Allowed', 405);
+        if (!empty($result))
+            return $this->response($result, 201);
+        else return $this->response("Данных по запросу нет", 202);
     }
 
 
@@ -40,6 +39,12 @@ class GroupsApi extends Api
      */
     public function viewAction()
     {
+        // Если есть параметр uniq
+        if ( isset($this->requestParams['uniq']) ) {
+            $this->indexAction();
+            echo "qq";
+        }
+
         $result     = $this->model->getAll();
 
         if (!empty($result))

@@ -14,66 +14,14 @@ class User extends Model
         // $this->db - метод класса app.\lib\Db
         $result = $this->db->row("SELECT Name, Surname, Matern, DateOfBirth 
         FROM teach_id 
-        INNER JOIN users_info 
-        ON teach_id.ID = users_info.id 
+        INNER JOIN teach_info 
+        ON teach_id.ID = teach_info.id 
         WHERE login=:login", 
         array("login" => $login));
-        
+
         return $result;
     }
     
-
-    public function addDiscGroup() {
-        if(!empty($_POST)) {
-            $result     = ValidationCreate::checkDate('discgroup');
-
-
-            // Если нашли ошибку в валидации, возвращаем её в контроллер
-            if ($result != '') {
-                return $result;
-            }
-
-
-            else {
-
-                $id_groups  = $_POST['groupselect'];
-                $id_disc    = $_POST['discselect'];
-
-                $tablename  = "id_" . $id_groups . "_" . $id_disc;
-                $sql        = "SHOW TABLES LIKE '" . $tablename . "'";
-                // Проверяем на существование группы
-                $check     = $this->db->row($sql);
-                
-                if ( !empty($check) ) {
-                    return "Такая группа уже существует!";
-                } 
-
-                // Создаем таблицу id_groups_id_disc
-                $result     = $this->db->query("CREATE TABLE " . $tablename. "(
-                id INT(11) NOT NULL AUTO_INCREMENT,
-                datetime DATE NOT NULL,
-                id_students INT(11) NOT NULL,
-                status VARCHAR(30),
-                dop_parametrs VARCHAR(50),
-                PRIMARY KEY (id),
-                FOREIGN KEY (id_students) REFERENCES student_list(id) ON DELETE CASCADE )");
-
-                // Добавляем в список групп id_group_disc_teach 
-                // закрепляя каждую группу за конкретным преподавателем
-                $sql    = "INSERT INTO id_group_disc_teach(id_teach, id_group, id_disc)
-                VALUES (:id_teach, :id_group, :id_disc)"; 
-
-                $result = $this->db->query($sql,
-                array('id_teach'    => $_SESSION['id'],
-                        'id_group'  => $id_groups,
-                        'id_disc'   => $id_disc));
-
-                return "Индивидуальная группа добавлена";
-
-            }
-        }
-        return "Ошибка добавления, пожалуйста перезагрузите страницу";
-    }
 
 
     public function getGroupsInfo() 
@@ -100,23 +48,6 @@ class User extends Model
         array('id'  => $_SESSION['id']));
         
         return $result;
-    }
-
-
-    // Список дисципин по группе
-    public function getUniqDiscInfo($id_group)
-    {
-        $result = $this->db->row("SELECT DISTINCT id_group_disc_teach.id_disc, disciplyne.Name  
-        FROM id_group_disc_teach
-        INNER JOIN disciplyne
-        ON id_group_disc_teach.id_disc = disciplyne.id
-        WHERE id_group_disc_teach.id_teach = :id
-        AND id_group_disc_teach.id_group = :id_group",
-        array('id'  => $_SESSION['id'],
-                'id_group'  => $id_group));
-        
-        return $result;
-
     }
 
 

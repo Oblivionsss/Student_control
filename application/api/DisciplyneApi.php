@@ -1,5 +1,4 @@
-<?php 
-// Валидация для юзера
+<?php   // disciplyne
 
 namespace application\api;
 
@@ -16,34 +15,42 @@ class DisciplyneApi extends Api
 
     /**
      * Метод GET
-     * Отсутствует
-     * @return string
+     * Получаем список дисциплин, 
+     * доступных для данного пользователя 
+     * @return mas
      */
     public function indexAction()
-    {   
-        // Определяем тип возвращаемых данных
-        if (!isset($this->requestParams['uniq'])) {
-            $this->viewAction();
-        }
-        
-        // Нет необходимости в реализации данного метода
-        return $this->response('Method Not Allowed', 405);
+    {           
+        $result = $this->model->getAllUniq(
+            array('id'  => $_SESSION['id'],
+            'id_group'  => $this->requestParams['groups_id']
+        ));
+
+        // 
+
+        if (!empty($result))
+            return $this->response($result, 201);
+        else return $this->response("Данных по запросу нет", 202);
     }
 
 
     /**
      * Метод GET
      * Получение данных отдельной записи (по id)
-     * @return string
+     * @return mas
      */
     public function viewAction()
     {
+        // Если есть подзапрос на индивидуальные данные
+        if (isset($this->requestParams['uniq'])) {
+            $this->indexAction();
+        }
+
         $result     = $this->model->getAll();
 
         if (!empty($result))
             return $this->response($result, 201);
         else return $this->response("Данных по запросу нет", 202);
-
     }
 
 
@@ -70,9 +77,8 @@ class DisciplyneApi extends Api
 
             // Добавляем новую дисциплину в disciplyne
             $result = $this->model->addDisc(
-                array('teach_id'  => $this->id,
-                'name'      => $this->requestParams['NameDisc'],
-                'hours'     => $this->requestParams['CountHours'])
+                array('name'    => $this->requestParams['NameDisc'],
+                    'hours'     => $this->requestParams['CountHours'])
             );
             
             // Ошибка обновления

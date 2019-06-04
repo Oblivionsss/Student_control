@@ -81,6 +81,17 @@
 					</div>
 
 					<div class="form-group">
+						<label for="name" class="cols-sm-2 control-label">Выберите уровень образования*</label>
+						<div class="cols-sm-10">
+							<div class="input-group">
+								<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+								<input  type="radio"	id="radio1"  	name="level" 	value="0" checked> Бакалавриат <br>
+								<input  type="radio"	id="radio2"		name="level" 	value="1"> Магистратура <br>
+							</div>
+						</div>
+					</div>
+
+					<div class="form-group">
 						<label for="name" class="cols-sm-2 control-label">Курс*</label>
 						<div class="cols-sm-10">
 							<div class="input-group">
@@ -90,15 +101,6 @@
 						</div>
 					</div>
 
-					<div class="form-group">
-						<label for="name" class="cols-sm-2 control-label">Выберите уровень образования*</label>
-						<div class="cols-sm-10">
-							<div class="input-group">
-								<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-								<input type="text" class="form-control" name="level" value="" placeholder="Укажите количество часов дисциплины"/>
-							</div>
-						</div>
-					</div>
 					
 					<div class="form-group ">
 						<input type="submit" value="Добавить" class="btn btn-primary btn-lg btn-block login-buttonl" name="confirm"  placeholder="Зарегестрироваться"/>
@@ -165,8 +167,7 @@
 			<div class="block_input">
 				
 				<label for="name" class="cols-sm-2 control-label">Нажмите, чтобы связать дисциплину и группу</label>
-				<form id="discgroup" method="post" action="">
-					<input type="hidden" name="discgroup" value="t"/>
+				<form id="discgroup" method="POST" action="/api/groups_disc/">
 					
 					<div class="form-group"> 
 						<label for="name" class="cols-sm-2 control-label">Группа</label>

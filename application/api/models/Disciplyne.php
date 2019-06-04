@@ -9,8 +9,8 @@ class Disciplyne extends ModelApi
     // Добавляем дисциплину
     public function addDisc ($mas)
     {
-        $sql = "INSERT INTO disciplyne(teach_id, Name, Hours) 
-        VALUES (:teach_id, :name, :hours)";
+        $sql = "INSERT INTO disciplyne(Name, Hours) 
+        VALUES  (:name, :hours)";
 
         $result = $this->db->add($sql, $mas);
                 
@@ -20,7 +20,7 @@ class Disciplyne extends ModelApi
         return false;
     }
 
-    // Получаем все дисциплины
+    // Список всех дисциплины
     public function getAll()
     {
         $sql    = "SELECT id, Name
@@ -30,4 +30,22 @@ class Disciplyne extends ModelApi
 
         return $result;
     }
+
+    // Вовзврат всех дисциплин доступных для пользователя,
+    // по определенной группе
+    public function getAllUniq($mas)
+    {
+        $sql    = "SELECT DISTINCT teach_group_disc.id, disciplyne.Name  
+        FROM teach_group_disc
+        INNER JOIN disciplyne
+        ON teach_group_disc.id_disc = disciplyne.id
+        WHERE teach_group_disc.id_teach = :id
+        AND teach_group_disc.id_group = :id_group";
+
+        $result = $this->db->row($sql, $mas);
+
+        return $result;
+    }
+
+
 }

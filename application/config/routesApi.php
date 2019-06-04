@@ -7,7 +7,12 @@
             'model'         => 'Disciplyne'
         ],
 
-        'api/groups_disc/#'    => [
+        'api/groups_disc_info#'    => [
+            'controller'    => 'GroupsDiscInfoApi',
+            'model'         => 'GroupsDiscInfo'
+        ],
+        
+        'api/groups_disc#'    => [
             'controller'    => 'GroupsDiscApi',
             'model'         => 'GroupsDisc'
         ],
@@ -17,14 +22,18 @@
             'model'         => 'Groups'
         ],
 
+
+            
+        
+        'api/studentControl#'   => [
+            'controller'    => 'StudentControlApi'
+        ],
+
         'api/student#'  => [
             'controller'    => 'StudentApi',
             'model'         => 'Student'
         ],
         
-        'api/studentControl#'   => [
-            'controller'    => 'StudentControlApi'
-        ],
 
         'api/users_info#'   => [
             'controller'    => 'UsersInfoApi',

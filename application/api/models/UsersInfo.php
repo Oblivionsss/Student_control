@@ -7,21 +7,21 @@ use application\core\ModelApi;
 class UsersInfo extends ModelApi
 {
     // Личные данные пользователя
-    public function getById($id)
+    public function getById($mas)
     {
         $sql    = "SELECT Name, Surname, Matern, DateOfBirth, YD 
-        FROM users_info 
+        FROM teach_info 
         WHERE id=:id";
 
-        $result = $this->db->row($sql, 
-                array("id" => $id));
+        $result = $this->db->row($sql, $mas);
         
         return $result;
     }
 
 
+    // Обновление личных данных преподавателя
     public function update($mas) {
-        $sql    = "UPDATE users_info
+        $sql    = "UPDATE teach_info
         SET Name=:Name, Surname=:Surname, 
         Matern=:Matern, DateOfBirth=:DateOfBirth, YD=:YD
         WHERE id=:id";
