@@ -4,7 +4,16 @@ namespace application\api\models;
 
 use application\core\ModelApi;
 
-class ... extends ModelApi
+class StudentControl extends ModelApi
 {
-    //
+    public function addAction($mas)
+    {
+        $sql    = "INSERT INTO student_control_id(
+            id_uniq, id_stud, datetime)
+            VALUES (:id_uniq, :id_stud, :date)";
+        
+        $result = $this->db->query($sql, $mas);
+
+        return;
+    }
 }

@@ -6,7 +6,7 @@ $(document).ready(function () {
     $('#disc_id').change(function() {
         // Если группа и дисциплина выбрана
         // Подгружаем данные
-
+        // В disc_id уникальный ключ свзяки teachid-discid-grpid
 
         if ( ($('#group_id').val() != 0) &&
         ($('#disc_id').val() != 0) ) {
@@ -15,11 +15,14 @@ $(document).ready(function () {
             disc_id     = $('#disc_id').val(); 
 
             var req = "group_id=" + groups_id;
-            req     += "&disc_id=" + disc_id;            
-            req_upd = req + "&updateDate=true";
+            req     += "&all=" + true;            
+            
+            
+            var req_upd = "disc_id=" + groups_id;
+            req_upd     += "&updateDate=true";
 
             $.ajax ({
-                url: 	'',
+                url: 	'/api/student/' ,
                 method: 'GET',
                 data:   req,
                 cache:  false,
@@ -45,8 +48,11 @@ $(document).ready(function () {
                         
                         // Формируем шаблон под столбец с ФИО студентами
                         // Каждой записи будет соответствовать свой id;
-                        $(json.list).each(function() {
-                            options += '<tr><td data-id-students="' + $(this).attr('id_students') + '">' + $(this).attr('Surname') + ' ' + $(this).attr('Name') + 
+                        $(json.data).each(function() {
+                            options += '<tr><td data-id-students="' + 
+                            $(this).attr('id') + '">' + 
+                            $(this).attr('Surname') + ' ' 
+                            + $(this).attr('Name') + 
                             '</td>' + '</tr>';
                         });
                         
@@ -57,7 +63,7 @@ $(document).ready(function () {
 
             // Загружаем дату и данные по посещаемости
             $.ajax ({
-                url: 	'',
+                url: 	'/api/studentControl/',
                 method: 'GET',
                 data:   req_upd,
                 cache:      false,

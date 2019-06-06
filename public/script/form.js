@@ -6,14 +6,16 @@ $(document).ready(function() {
 				var formID = $(this).attr('id'); // Получение ID формы
 				var formNm = $('#' + formID);
 
+				console.log(this);
 			$.ajax({
-				url: 	$(formNm).attr('action'),
-				type:	$(formNm).attr('method'),
-				data: 		new FormData(formNm),
+				url: 	$(this).attr('action'),
+				type:	$(this).attr('method'),
+				data: 		new FormData(this),
 				cache: 					false,
 				contentType:			false,
 				processData:			false,
 				
+
 				success: 		function(result) {
 					json = 		jQuery.parseJSON(result);
 

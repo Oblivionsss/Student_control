@@ -17,8 +17,8 @@ html {
 
 body {
     height: 100%;
-    background: url(/public/image/background.png) no-repeat;
-    background-size: cover;
+    /* background: url(/public/image/background.png) no-repeat;
+    background-size: cover; */
 }
 
 
@@ -29,14 +29,16 @@ body {
 
 header {
     width: 100%;
-    padding: 5px;
-    height: 60px;
+    padding: none;
     border-style: none none solid none;
 	border-width: 1px;
 	border-color: #e5e5e5;
 	background-color: #fbfbfb;
     color: #444444;
 }
+
+.clearfix { display: block; }
+.clearfix:after { content: ""; display: block; clear: both; visibility: hidden; line-height: 0; height: 0; margin: 0; padding: 0; }
 
 .name {
     color: rgb(96, 99, 107);
@@ -96,11 +98,10 @@ label {
 
 
 .content {
-    min-height: calc(100% - 120px);
+    min-height: calc(100% - 100px);
     width: 100%; 
     padding-left: 15px;
     padding-right: 15px;
-    background-color: #f4f4f4;
 }
 
 .inline {
@@ -120,7 +121,7 @@ label {
 }
 
 .content-acc {
-    min-height: calc(100% - 120px);
+    min-height: calc(100% - 100px);
     width: 100%; 
     padding-left: 15px;
     padding-right: 15px;
@@ -131,7 +132,7 @@ label {
 }
 
 .auth {
-    min-height: calc(100% - 120px);
+    min-height: calc(100% - 100px);
     width: 100%; 
     padding-left: 15px;
     padding-right: 15px;
@@ -147,7 +148,7 @@ label {
 
 
 .menu {
-    min-height: 50px;
+    min-height: 30px;
     text-align: center;
 }
 
@@ -158,6 +159,7 @@ label {
 
 .container-menu > div {
     display: inline-block;
+    font-size: 20px;    
 }
 
 
@@ -166,7 +168,7 @@ label {
 
 
 .footer {
-    height: 60px;
+    height: 50px;
     width: 100%;
     background-color: #333333;
 

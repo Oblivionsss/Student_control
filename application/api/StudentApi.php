@@ -22,18 +22,31 @@ class StudentApi extends Api
     public function indexAction()
     {   
         // Нет необходимости в реализации данного метода
-        return $this->response('Method Not Allowed', 405);
+        
+        $result = $this->model->getAllStudGroupsId(
+            array('id_group'    => $this->requestParams['group_id'])
+        );
+        return $this->response($result, 201);
     }
 
 
     /**
      * Метод GET
-     * Получение данных отдельной записи (по id)
+     * Получение данных отдельной записи (по id группы)
      * @return string
      */
     public function viewAction()
     {
-        return $this->response('Method Not Allowed', 405);
+        if (isset($this->requestParams['all'])) {
+            $this->indexAction();
+        }
+
+        // Получаем список студентов по id - группы
+        $result = $this->model->getStudGroupsId();
+        
+        return $result;
+
+        // return $this->response('Method Not Allowed', 405);
     }
 
 
@@ -56,9 +69,9 @@ class StudentApi extends Api
         else {
             // Добавление группы
             $result = $this->model->addStud(
-                array('nameSt'  => $_POST['nameSt'],
-                'nameSn'        => $_POST['nameSn'],
-                'groups'        => $_POST['groups_id'])
+                array('nameSt'  => $this->requestParams['nameSt'],
+                'nameSn'        => $this->requestParams['nameSn'],
+                'groups'        => $this->requestParams['groups_id'])
             );
 
             return $this->response('Data updated', 201);
@@ -87,4 +100,17 @@ class StudentApi extends Api
     {
         return $this->response('Method Not Allowed', 405);
     }
+
+    public function getStud($groups_id)
+    {
+        // Получаем список студентов по id - группы
+        $result = $this->model->getStudGroupsId(
+            array('id_group'  => $groups_id)
+        );
+        
+        return $result;
+
+        // return $this->response('Method Not Allowed', 405);
+    }
+
 }

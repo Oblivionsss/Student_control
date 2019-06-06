@@ -70,7 +70,7 @@ class AccountController extends Controller
             $_SESSION['login_user']  = $_POST['login'];
             $_SESSION['authorize']   = true;
             $_SESSION['id']          = Auth::getId();
-
+                    
             // Переадресация на личную страницу
             $this->view->location('/user/rasp');
             exit;

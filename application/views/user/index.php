@@ -67,12 +67,12 @@
 							</div>
 						</div>
 						
-						<div class="form-group"> 
-							<label for="username" class="cols-sm-2 control-label">Дата</label>
+						<div class="form-group">
 							<div class="cols-sm-10">
+									<label for="username" class="cols-sm-2 control-label">Дата</label>
 								<div class="input-group">
 									<span class="input-group-addon input-group-half"><i class="fa fa-users fa" aria-hidden="true"></i></span>
-									<input type="date"  value="" name="date"/>
+									<input type="date" class="form-control" value="" name="date"/>
 								</div>
 							</div>
 						</div>
@@ -82,13 +82,15 @@
 								<div class="cols-sm-10">
 									<div class="input-group">
 									<select class="form-control" name="pars">
-										<option value="0">- Укажите пару -</option>
-										<option value="1"> Первая пара </option>
-										<option value="2"> Вторая пара </option>
-										<option value="3"> Третья пара </option>
-										<option value="4"> Четвертая пара </option>
-										<option value="5"> Пятая пара </option>
-										<option value="6"> Шестая пара </option>
+										<option value="0">- укажите пару -</option>
+										<option value="1"> первая пара </option>
+										<option value="2"> вторая пара </option>
+										<option value="3"> третья пара </option>
+										<option value="4"> четвертая пара </option>
+										<option value="5"> пятая пара </option>
+										<option value="6"> шестая пара </option>
+										<option value="7"> седьмая пара </option>
+										<option value="8"> восьмая пара </option>
 									</select>	  
 								</div>
 							</div>
@@ -105,7 +107,7 @@
 						</div>
 						
 						<div class="form-group ">
-							<input type="submit" value="Добавить" class="btn btn-primary btn-lg btn-block login-buttonl" name="confirm"  placeholder="Зарегестрироваться"/>
+							<input type="submit" value="Добавить" class="btn btn-primary btn-lg btn-block login-buttonl" name="confirm"  placeholder="Добавить"/>
 						</div>
 
 				</form>

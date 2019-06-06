@@ -4,6 +4,8 @@ namespace application\api;
 
 use application\core\Api;
 use application\api\models\UsersInfo;
+use application\api\models\Student;
+use application\api\models\StudentControl;
 
 class GroupsDiscInfoApi extends Api
 {
@@ -49,6 +51,7 @@ class GroupsDiscInfoApi extends Api
     {
         // Сначала валидация ><
         // Затем добавляем данные
+
         $result     = $this->model->addRasp(
             array('id'  => $this->requestParams['disc_id'],
                 'date'  => $this->requestParams['date'],
@@ -56,6 +59,48 @@ class GroupsDiscInfoApi extends Api
                 'par'   => $this->requestParams['pars'],
                 'hall'  => $this->requestParams['lectureHall'])
         );
+
+  
+        // Теперь обновим основную таблицу student_control_id
+        // Сначала получим список студентов по данной группе
+        $stud  =  new Student();
+
+        $stud_list  = $stud->getStudGroupsId(
+            array('id_group'  => $this->requestParams['group_id'])
+        );
+
+
+        // определяем перую дату
+        $data  = $this->requestParams['date'];
+
+        // определяем интервал повтора занятий
+        $up         = "2019-08-30";  // коонец семестра
+        $repeat     = '';
+
+        if ($this->requestParams['radio'] == 0) {
+            $repeat = '+ 1 WEEK';
+        }
+        else $repeat = '+2 WEEK';
+
+        var_dump($stud_list);
+
+        $studControl    = new StudentControl();
+        // заполняем таблицу - уникальную группу данными
+        while ($data <= $up) 
+        {
+
+            // Перебираем все id
+            foreach ($stud_list as $key => $value) {
+                $studControl->addAction(
+                    array('date'  => $data,
+                    'id_stud'   => $value['id'],
+                    'id_uniq'   => $this->requestParams['disc_id']) 
+                );
+            }
+
+            // Добавляем период
+            $data = date('Y-m-d', strtotime($repeat, strtotime($data)));         
+        }
         
         return $this->response('Data updated', 201);
     }

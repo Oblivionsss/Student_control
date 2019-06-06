@@ -1,7 +1,7 @@
 <div class="auth">
     
     <div class="register">
-        <label for="name" class="cols-sm-2 control-label">Авторизация</label>
+        <label for="form" class="cols-sm-2 control-label">Авторизация</label>
         <form id="disc" method="post" action="">
 
             <input type="hidden" name="disc" value="t"/>
@@ -30,10 +30,10 @@
                 <input type="submit" value="Войти" class="btn btn-primary btn-lg btn-block login-buttonl" name="confirm"  placeholder="Войти"/>
             </div>
 
-            <div class="form-group ">
-                <label  class="cols-sm-2 control-label"><a href="/account/register">Регистрация</a></label>
-            </div>
         </form>
+                <div class="form-group ">
+                    <label  class="cols-sm-2 control-label"><a href="/account/register">Регистрация</a></label>
+                </div>
 
     </div>
 </div>

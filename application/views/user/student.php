@@ -1,4 +1,4 @@
-<script src="/public/script/select.js"></script> 
+<script src="/public/script/student/updateSelect.js"></script> 
 <script src="/public/script/formControl.js"></script> 
 
 	<div class="content">
@@ -32,11 +32,8 @@
 							<label for="name" class="cols-sm-2 control-label">Группа</label>
 							<div class="cols-sm-10">
 								<div class="input-group">
-									<select class="form-control"	name="group_id" id="group_id">
+									<select class="form-control"name="group_id" id="group_id">
 										<option value="0">- выберите группу -</option>
-										<?php foreach ($groups as $key => $value) : ?>
-										<option value="<?=$value['id_group']?>"><?=$value['NameOfGrups']?></option>
-<?php endforeach;?>
 									</select>
 								</div>
 							</div>

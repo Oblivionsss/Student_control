@@ -37,19 +37,6 @@ class User extends Model
     }
 
 
-    // Список групп 
-    public function getUniqGroupsInfo()
-    {
-        $result = $this->db->row("SELECT DISTINCT id_group_disc_teach.id_group, groups_id.NameOfGrups  
-        FROM id_group_disc_teach
-        INNER JOIN groups_id
-        ON id_group_disc_teach.id_group = groups_id.id
-        WHERE id_group_disc_teach.id_teach = :id",
-        array('id'  => $_SESSION['id']));
-        
-        return $result;
-    }
-
 
     // Добавляем расписание
     public function addRasp()

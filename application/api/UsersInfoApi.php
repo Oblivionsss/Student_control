@@ -31,7 +31,8 @@ class UsersInfoApi extends Api
     public function viewAction()
     {
         $user   = $this->model->getById(
-                'id'    => $this->id);
+                array('id'    => $this->id)
+            );
         
         return $this->response($user, 201);
     }
