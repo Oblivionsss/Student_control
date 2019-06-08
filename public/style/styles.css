@@ -6,11 +6,11 @@
 
 /* Selections */
 
-::selection {
+/* ::selection {
  	color: #fff;
  	text-shadow: none;
  	background: #444;
-}
+} */
 
 ::-moz-selection {
  	color: #fff;
@@ -22,7 +22,7 @@
 
 html, body {
 	width: 100%;
-	font-family: "Helvetica Neue", Helvetica, sans-serif;
+
 	color: #444;
 	-webkit-font-smoothing: antialiased;
 	background: url(/public/image/bg.png) repeat;

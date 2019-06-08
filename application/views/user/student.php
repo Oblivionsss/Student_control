@@ -1,6 +1,8 @@
 <script src="/public/script/student/updateSelect.js"></script> 
 <script src="/public/script/formControl.js"></script> 
 
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+
 	<div class="content">
 
 		<div class="menu">
@@ -57,11 +59,11 @@
 
 			<!-- Таблица со списком студентов -->
 			<div>
-				<table>
+				<table class="table table-striped ">
 					<!-- Блок заголовков - определяющих дату -->
 					<thead>
 						<tr>
-							<th style="border:none"></th>
+							<th></th>
 						</tr>
 					</thead>
 				  	<!--   -->
@@ -80,3 +82,4 @@
 		</div>
 	
 	</div>
+	<script src="/public/script/student/ajax.js"></script> 

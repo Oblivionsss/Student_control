@@ -82,7 +82,7 @@ class GroupsDiscInfoApi extends Api
         }
         else $repeat = '+2 WEEK';
 
-        var_dump($stud_list);
+
 
         $studControl    = new StudentControl();
         // заполняем таблицу - уникальную группу данными

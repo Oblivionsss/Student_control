@@ -98,8 +98,10 @@ $(document).ready(function () {
 
         // Если поля не пустые - отправляем данные на сервер
                 
-        $('form').submit(function () {
-            event.preventDefault();
+        $('form').submit(function (e) {
+            e.preventDefault();
+            e.stopImmediatePropagation();
+
 
             $.ajax({
                 url: 	$(this).attr('action'),

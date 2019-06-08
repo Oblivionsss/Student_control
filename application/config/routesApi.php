@@ -26,7 +26,8 @@
             
         
         'api/studentControl#'   => [
-            'controller'    => 'StudentControlApi'
+            'controller'    => 'StudentControlApi',
+            'model'         => 'StudentControl'
         ],
 
         'api/student#'  => [

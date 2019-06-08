@@ -16,4 +16,17 @@ class GroupsDiscInfo extends ModelApi
 
         return;
     }
+
+    // Возврат даты добавления
+    public function getAddDate($mas) 
+    {
+        $sql    = "SELECT dateAdd
+        FROM teach_group_disc_info
+        WHERE teachdiscgroup=:id_uniq";
+
+
+        $result = $this->db->row($sql, $mas);
+
+        return $result;
+    }
 }
