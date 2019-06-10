@@ -7,8 +7,8 @@
 
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 	<link href="/public/style/reset.css" rel="stylesheet"  type="text/css" media="screen" />	
-	<link href="/public/style/user.css" rel="stylesheet"  type="text/css" media="screen" />	
 	<link href="/public/style/styles.css" rel="stylesheet"  type="text/css" media="screen" />	
+	<link href="/public/style/user.css" rel="stylesheet"  type="text/css" media="screen" />	
 
 	
 </head>

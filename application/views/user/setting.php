@@ -32,7 +32,7 @@
                     <label for="name" class="cols-sm-2 control-label">Имя</label>
                     <div class="cols-sm-10">
                         <div class="input-group">
-                            <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+                           
                             <input type="text" class="form-control" name="Name" value="" placeholder="Введите Ваше имя"/>
                         </div>
                     </div>
@@ -42,7 +42,6 @@
                     <label for="name" class="cols-sm-2 control-label">Фамилия</label>
                     <div class="cols-sm-10">
                         <div class="input-group">
-                            <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
                             <input type="text" class="form-control" name="Surname" value="" placeholder="Введите Ваше имя"/>
                         </div>
                     </div>
@@ -52,7 +51,6 @@
                     <label for="name" class="cols-sm-2 control-label">Отчество</label>
                     <div class="cols-sm-10">
                         <div class="input-group">
-                            <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
                             <input type="text" class="form-control" name="Matern" value="" placeholder="Введите Ваше имя"/>
                         </div>  
                     </div>
@@ -62,7 +60,6 @@
                     <div class="cols-sm-10">
                             <label for="username" class="cols-sm-2 control-label">Год рождения</label>
                         <div class="input-group">
-                            <span class="input-group-addon input-group-half"><i class="fa fa-users fa" aria-hidden="true"></i></span>
                             <input type="date" class="form-control" value="" name="DateOfBirth"/>
                         </div>
                     </div>
@@ -72,7 +69,6 @@
                     <div class="cols-sm-10">
                             <label for="name" class="cols-sm-2 control-label">Яндекс диск</label>
                         <div class="input-group">
-                            <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
                             <input type="text" class="form-control" name="YD" value="" placeholder="Ссылка на ваш ЯД"/>
                         </div>  
                     </div>

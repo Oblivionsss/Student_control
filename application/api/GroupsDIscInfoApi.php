@@ -14,6 +14,7 @@ class GroupsDiscInfoApi extends Api
 
     /**
      * Метод GET
+     * Подгрузка данных по отдельному расписанию
      * Отсутствует
      * @return string
      */
@@ -26,17 +27,20 @@ class GroupsDiscInfoApi extends Api
 
     /**
      * Метод GET
-     * Получение данных отдельной записи (по id)
+     * Получение данных расписания
+     * за ближайшие три периода
      * @return string
      */
     public function viewAction()
     {
-        // $user   = $this->model->getById(
-        //         'id'    => $this->id);
-        
-        // return $this->response($user, 201);
-        
-        return $this->response('Method Not Allowed', 405);
+        $result = $this->model->getIdRasp(
+            array('id'  => $this->id)
+        );
+
+        if ( !empty($result) ) {
+            return $this->response($result, 200);
+        }
+        else return $this->response("Данных по запросу нет", 202);
     }
 
 
@@ -77,18 +81,18 @@ class GroupsDiscInfoApi extends Api
         $up         = "2019-08-30";  // коонец семестра
         $repeat     = '';
 
-        if ($this->requestParams['radio'] == 0) {
-            $repeat = '+ 1 WEEK';
-        }
-        else $repeat = '+2 WEEK';
-
-
-
         $studControl    = new StudentControl();
-        // заполняем таблицу - уникальную группу данными
-        while ($data <= $up) 
-        {
 
+        if ($this->requestParams['radio'] == 0
+            || $this->requestParams['radio'] == 1) {
+            
+            if ($this->requestParams['radio'] == 0) {
+                $repeat = '+1 WEEK';
+            }
+            else 
+                $repeat = '+2 WEEK';
+               
+            
             // Перебираем все id
             foreach ($stud_list as $key => $value) {
                 $studControl->addAction(
@@ -99,9 +103,26 @@ class GroupsDiscInfoApi extends Api
             }
 
             // Добавляем период
-            $data = date('Y-m-d', strtotime($repeat, strtotime($data)));         
+            $data = date('Y-m-d', strtotime($repeat, strtotime($data)));     
         }
         
+        // Добавляем единичное занятие
+        else if ($this->requestParams['radio'] == 2){
+            
+            // Перебираем все id
+            foreach ($stud_list as $key => $value) {
+                $studControl->addAction(
+                    array('date'  => $data,
+                    'id_stud'   => $value['id'],
+                    'id_uniq'   => $this->requestParams['disc_id']) 
+                );
+            }
+        }
+
+        else 
+            return  $this->response('Ошибка добавления данных', 404);
+        
+
         return $this->response('Data updated', 201);
     }
 

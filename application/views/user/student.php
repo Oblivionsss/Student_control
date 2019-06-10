@@ -29,7 +29,7 @@
 
 		<div>
 			<div>
-				<form action="#" method="get">
+				<form class="select_float" action="#" method="get">
 					<div class="form-group inline"> 
 							<label for="name" class="cols-sm-2 control-label">Группа</label>
 							<div class="cols-sm-10">

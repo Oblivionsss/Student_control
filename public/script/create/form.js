@@ -25,6 +25,7 @@ $(document).ready(function() {
 
 					else if (json.status && json.status == 201) {
 						alert(json.data);
+						window.setTimeout('location.reload()', 50);
 					}
 
 					// if (json.url) {

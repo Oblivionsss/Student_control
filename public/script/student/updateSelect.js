@@ -49,6 +49,7 @@ $(document).ready(function () {
         // значит подгружаем данные по дисциплине
     $('#group_id').change(function () {
 
+        event.preventDefault();
         // Получаем значение группы
         var groups_id = $('#group_id').val();
         

@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 	<link href="/public/style/user.css" rel="stylesheet"  type="text/css" media="screen" />	
     <link href="/public/style/styles.css" rel="stylesheet"  type="text/css" media="screen" />	
-   
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 	
 </head>
 <body>
@@ -18,7 +18,7 @@
     <!-- Верхняя часть страницы -->
     <header class ="clearfix" >
         <div class="logo">
-            Image
+            <i class="fa fa-user" aria-hidden="true"></i>
         </div>
 
         <div class="user">
@@ -26,7 +26,10 @@
         </div>
         
         <div class="logout">
-            <a href="/application/core/Logout.php">Выход</a>
+            <a class="btn btn-primary" href="/application/core/Logout.php">
+                Выход
+            </a>
+         
         </div>
     </header>
 

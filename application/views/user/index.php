@@ -1,4 +1,5 @@
-
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+<script src="/public/script/rasp/loadRasp.js"></script> 
 
 	<div class="content">
 
@@ -24,14 +25,38 @@
 			</div>
 		</div>
 
-		<div class="content_inner">
+		<div class="content_inner non_flex">
+
+
+				<table class="table table-hover table_size">
+					<!-- Блок заголовков - определяющих дату -->
+					<!-- <thead>
+						<tr>
+							<th></th>
+						</tr>
+					</thead> -->
+				  	<!--   -->
+					
+					<!-- Блок списков студентов и их успеваемости -->
+					<tbody>
+						
+					</tbody>
+					<!--  -->
+
+				</table>
+
+
 			
-			
-			<div class="block_input">
+			<div class="block_input center">
+
+
+				<input type="checkbox" id="hd-1" class="hide"/>
+				<label for="hd-1" class="cols-sm-2 control-label">
+					<i class="fa fa-chevron-down"></i>
+					Добавить расписание
+				</label>
 				
 				<form action="/api/groups_disc_info/" method="POST" id="add">
-
-					<label for="name" class="cols-sm-2 control-label">Добавить занятие</label>
 						
 						<div class="form-group"> 
 							<label for="name" class="cols-sm-2 control-label">Группа</label>
@@ -71,7 +96,7 @@
 							<div class="cols-sm-10">
 									<label for="username" class="cols-sm-2 control-label">Дата</label>
 								<div class="input-group">
-									<span class="input-group-addon input-group-half"><i class="fa fa-users fa" aria-hidden="true"></i></span>
+									<span class="input-group-addon input-group-half"></span>
 									<input type="date" class="form-control" value="" name="date"/>
 								</div>
 							</div>
@@ -100,7 +125,7 @@
 							<label for="name" class="cols-sm-2 control-label">Аудитория</label>
 							<div class="cols-sm-10">
 								<div class="input-group">
-									<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+									<span class="input-group-addon"></span>
 									<input type="text" class="form-control" name="lectureHall" value="" placeholder="укажите аудиторию"/>
 								</div>
 							</div>

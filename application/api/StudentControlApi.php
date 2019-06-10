@@ -9,7 +9,16 @@ use application\api\models\GroupsDiscInfo;
 
 class StudentControlApi extends Api
 {
+
     public $apiName     = 'studentControl';
+
+    private $lower;
+    private $up     = '2019-08-30';
+    private $sort   = "DESC";
+    private $today;
+    private $limit  = 5;
+
+
     // получаем добавляем данные при добавлении даты
     protected function indexAction() 
     {
@@ -27,103 +36,126 @@ class StudentControlApi extends Api
         
         $uniq       = $this->requestParams['disc_id'];
         // Получаем сегодняшнюю дату
-        $today;     // дата относительная//
+        // $today;     // дата относительная//
 
         if (isset($this->requestParams['days'])) {
-            $today  = $this->requestParams['days']; 
+            $this->today  = $this->requestParams['days']; 
         }
         else {
-            $today  = date("Y-m-d");
+            $this->today  = date("Y-m-d");
         } 
         
 
         // Получаем дату добавления предмета 
-        $lowerDefault   = $this->getDate($uniq)[0]["dateAdd"];
+        if ( isset( $this->getDate($uniq)[0]["dateAdd"]) ) 
+            $lowerDefault   = $this->getDate($uniq)[0]["dateAdd"];
+        else return $this->response('ошибка, отсутствуют данные', 404);
             
         // Верхняя граница по умочанию
-        $up         = "2019-08-30"; 
+        // $up         = "2019-08-30"; 
 
         // Нижняя граница по умолчанию
-        $lower      = $lowerDefault;
+        $this->lower      = $lowerDefault;
 
         // Верхняя граница дат фактическая  
         $uppDefault = $this->model->getMaxDate(
             array('id_uniq'  => $uniq)
         );
 
-        $uppDefault = $uppDefault[0]['datetime']; 
+        $uppDefault;
+        
+        if (isset ($uppDefault[0]['datetime']))
+            $uppDefault = $uppDefault[0]['datetime'];
+        else  return $this->response('ошибка, отсутствуют данные', 404); 
 
-        // Ограничения на выборку 
-        $limit = 5;
 
-        // Сортировка выборки по умолчанию в порядке убывания
-        $sort = "DESC";
 
 
 
         // Рассчет нижней выборки
         // Получаем последние даты до сегодняшнего дня
         // Если дата обращения >= даты выборки
-        if ($today      >= $lower) {
+        if ($this->today      >= $this->lower) {
             // Верхняя граница - сегодняшняя дата
-            $up         = $today;
+            $this->up         = $this->today;
             
+            
+            $databefore = $this->model->getDate(
+                $this->lower, $this->up, 
+                $this->sort, $this->limit, 
+                array('id_uniq'  => $uniq)
+            );
 
-            $databefore = $this->model->getDate($lower, $up, $sort, $limit, array('id_uniq'  => $uniq));
-            
             // Проверяем факт. строк 
             $rowBefore  = count($databefore);
-
+            // var_dump($rowBefore);
+            
             // Добавим недостающее количество данных по выборке
             // В выборку после нашей даты 
-            if ($rowBefore < 5) {
-                $limit  = 5 - $rowBefore;
+            if ($rowBefore <= 5) {
+                $this->limit  = 5 - $rowBefore;
             }
+            else return $this->response('Оибка в дате', 404);
+            
         }
         else {
             // Иначе выдаем все ближайшие 10 дат
             // $up == верхняя граница выборок
-            $sort   = "ASC";
-            $up     = $uppDefault;
-            $limit  = 10;
+            $this->sort   = "ASC";
+            $this->up     = $uppDefault;
+            $this->limit  = 10;
             
-            $data   = $this->model->getDate($lower, $up, $sort, $limit, array('id_uniq'  => $uniq));
-
+            $data   = $this->model->getDate(
+                $this->lower, $this->up, 
+                $this->sort, $this->limit, 
+                array('id_uniq'  => $uniq)
+            );
+            
             asort($data);
-            return $data;
+            $this->getAllData($data, $uniq);    
         }
-
+        
         
         // Теперь получаем все даты верхней границы
         // Если дата запрос <= фактической границы семестра
-        if ( date('Y-m-d', strtotime("+1 DAY", strtotime($today))) <= $uppDefault ) {
-            
+        if ( date('Y-m-d', strtotime("+1 DAY", strtotime($this->today))) <= $uppDefault ) {
+            $this->today = date('Y-m-d', strtotime("+1 DAY", strtotime($this->today)))  ;
             // Меняем метод сортировки
-            $sort   = "ASC";
+            $this->sort   = "ASC";
             // Нижняя граница - сегодняшняя дата
-            $lower  = $today;
+            $this->lower  = $this->today;
             // Верхняя граница - факт.граница сема
-            $up     = $uppDefault;
+            $this->up     = $uppDefault;
             
-            $limit  = 5 + $limit ;            
-
-
+            $this->limit  = 5 + $this->limit;            
+         
             
             // Получаем даты 
-            $dateafter  = $this->model->getDate($lower, $up, $sort, $limit, array('id_uniq'  => $uniq));
+            $dateafter  = $this->model->getDate(
+                $this->lower, $this->up, 
+                $this->sort, $this->limit, 
+                array('id_uniq'  => $uniq)
+            );
         }
         else {
             // Иначе выдаем последние 10 дат 
-            $sort   = "DESC";
-            $lower  = $lowerDefault;
-            $up     = $uppDefault;
-            $limit  = 10;
+            $this->sort   = "DESC";
+            $this->lower  = $lowerDefault;
+            $this->up     = $uppDefault;
+            $this->limit  = 10;
             
 
-            $data   = $this->model->getDate($lower, $up, $sort, $limit, array('id_uniq'  => $uniq)); 
+            $data   = $this->model->getDate(
+                $this->lower, $this->up, 
+                $this->sort, $this->limit, 
+                array('id_uniq'  => $uniq)
+            );
+
             asort($data);
-            return $data;
+            $this->getAllData($data, $uniq); 
         }
+        
+        
         // Объединим получившиеся данные
         $date = array_merge($databefore, $dateafter);
         
@@ -246,5 +278,6 @@ class StudentControlApi extends Api
         // var_dump($mas);
 
         return $this->response(array($mas, $result), 201);
+        exit();
     }
 }

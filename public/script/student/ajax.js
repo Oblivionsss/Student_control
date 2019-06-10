@@ -4,9 +4,11 @@
 // ajax( id - записи, значение статуса')
 
 $('table').on('click', 'i', function(){
+    console.log(11);
     // Счетчик на пустые ячейки
     // переключатель с состояния- "был" на "не был"
     if ($(this).attr( "class" ) == 'fa fa-check') {
+       
         $( this ).removeClass( "fa-check" );
         $( this ).parent().attr('data-status', '0');
 
@@ -19,6 +21,7 @@ $('table').on('click', 'i', function(){
     
     // переключает с состояния "не был" на данных нет
     else if ($(this).attr( "class" ) == 'fa fa-times'){
+        // console.log(11);
         $( this ).parent().attr( 'data-status', 'null' );
         
         // отправка данных на сервер

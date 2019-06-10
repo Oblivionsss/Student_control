@@ -1,5 +1,6 @@
-<script src="/public/script/create/form.js"></script> 
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 <script src="/public/script/create/updateGroup.js"></script> 
+<script src="/public/script/create/form.js"></script> 
 	<div class="content">
 
 		<div class="menu">
@@ -28,7 +29,12 @@
 
 			<div class="block_input">
 
-				<label for="name" class="cols-sm-2 control-label">Нажмите чтобы добавить дисциплину</label>
+				<input type="checkbox" id="hd-1" class="hide"/>
+					<label for="hd-1" class="cols-sm-2 control-label">
+						<i class="fa fa-chevron-down"></i>
+						Нажмите чтобы добавить дисциплину
+					</label>
+				
 				<form id="disc" method="POST" action="/api/disc/">
 		
 					<!-- <input type="hidden" name="disc" value="t"/> -->
@@ -37,7 +43,7 @@
 						<label for="name" class="cols-sm-2 control-label">Название дисциплины*</label>
 						<div class="cols-sm-10">
 							<div class="input-group">
-								<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+							
 								<input type="text" class="form-control" name="NameDisc" value="" placeholder="Введите название дисциплины"/>
 							</div>
 						</div>
@@ -47,7 +53,7 @@
 						<label for="name" class="cols-sm-2 control-label">Количество часов</label>
 						<div class="cols-sm-10">
 							<div class="input-group">
-								<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+							
 								<input type="text" class="form-control" name="CountHours" value="" placeholder="Укажите количество часов дисциплины"/>
 							</div>
 						</div>
@@ -66,15 +72,19 @@
 
 			<div class="block_input">
 
-				<label for="aj" class="cols-sm-2 control-label">Нажмите, чтобы добавить группу</label>
-				<form id="groups" method="POST" action="/api/groups/">
-		
+				<input type="checkbox" id="hd-2" class="hide"/>
+					<label for="hd-2" class="cols-sm-2 control-label">
+						<i class="fa fa-chevron-down"></i>
+						Нажмите, чтобы добавить группу
+					</label>
+				
+					<form id="groups" method="POST" action="/api/groups/">
 
 					<div class="form-group">
 						<label for="name" class="cols-sm-2 control-label">Название группы*</label>
 						<div class="cols-sm-10">
 							<div class="input-group">
-								<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+								
 								<input type="text" class="form-control" name="nameGroups" value="" placeholder="Введите название группы"/>
 							</div>
 						</div>
@@ -84,7 +94,7 @@
 						<label for="name" class="cols-sm-2 control-label">Выберите уровень образования*</label>
 						<div class="cols-sm-10">
 							<div class="input-group">
-								<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+								
 								<input  type="radio"	id="radio1"  	name="level" 	value="0" checked> Бакалавриат <br>
 								<input  type="radio"	id="radio2"		name="level" 	value="1"> Магистратура <br>
 							</div>
@@ -95,7 +105,7 @@
 						<label for="name" class="cols-sm-2 control-label">Курс*</label>
 						<div class="cols-sm-10">
 							<div class="input-group">
-								<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+								
 								<input type="text" class="form-control" name="Course" value="" placeholder="Выберите курс"/>
 							</div>
 						</div>
@@ -115,7 +125,12 @@
 
 			<div class="block_input">
 				
-				<label for="name" class="cols-sm-2 control-label">Нажмите, чтобы добавить студентов</label>
+				<input type="checkbox" id="hd-3" class="hide"/>
+					<label for="hd-3" class="cols-sm-2 control-label">
+						<i class="fa fa-chevron-down"></i>
+						Нажмите, чтобы добавить студентов
+					</label>
+			
 					<form id="stud" method="POST" action="/api/student/">
 					
 
@@ -123,7 +138,7 @@
 						<label for="name" class="cols-sm-2 control-label">Имя студента*</label>
 						<div class="cols-sm-10">
 							<div class="input-group">
-								<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+								
 								<input type="text" class="form-control" name="nameSt" value="" placeholder="Введите имя"/>
 							</div>
 						</div>
@@ -133,7 +148,7 @@
 						<label for="name" class="cols-sm-2 control-label">Фамилия студента*</label>
 						<div class="cols-sm-10">
 							<div class="input-group">
-								<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+								
 								<input type="text" class="form-control" name="nameSn" value="" placeholder="Введите фамилию"/>
 							</div>
 						</div>
@@ -165,8 +180,12 @@
 
 
 			<div class="block_input">
+				<input type="checkbox" id="hd-4" class="hide"/>
+						<label for="hd-4" class="cols-sm-2 control-label">
+							<i class="fa fa-chevron-down"></i>
+							Нажмите, чтобы связать дисциплину и группу
+						</label>
 				
-				<label for="name" class="cols-sm-2 control-label">Нажмите, чтобы связать дисциплину и группу</label>
 				<form id="discgroup" method="POST" action="/api/groups_disc/">
 					
 					<div class="form-group"> 

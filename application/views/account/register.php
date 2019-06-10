@@ -7,21 +7,31 @@
             <input type="hidden" name="disc" value="t"/>
     
             <div class="form-group">
-                <label for="name" class="cols-sm-2 control-label">Логин</label>
+                <label for="name" class="cols-sm-2">Логин</label>
                 <div class="cols-sm-10">
                     <div class="input-group">
                         <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-                        <input type="text" class="form-control" name="login" value="" placeholder="Введите Ваш логин"/>
+                        <input type="text" class="form-control" name="login" value="" placeholder="Введите логин"/>
                     </div>
                 </div>
             </div>
 
             <div class="form-group">
-                <label for="name" class="cols-sm-2 control-label">Пароль</label>
+                <label for="name" class="cols-sm-2">Пароль</label>
                 <div class="cols-sm-10">
                     <div class="input-group">
                         <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-                        <input type="password" class="form-control" name="password" value="" placeholder="Введите Ваш пароль"/>
+                        <input type="password" class="form-control" name="password" value="" placeholder="Введите пароль"/>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="name" class="cols-sm-2">Повторить пароль</label>
+                <div class="cols-sm-10">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+                        <input type="password" class="form-control" name="confirmPassword" value="" placeholder="Повторите пароль"/>
                     </div>
                 </div>
             </div>
