@@ -72,11 +72,19 @@ function getDate(req_upd) {
                 return false;
             }
 
+            var option  = {
+                month: 'long',
+                day: 'numeric',
+            }
+                        
             // Формируем строку с датами
             $(json.data[0]['datetime']).each(function(key, value){
+                var data    = new Date(value[0]);
+                data        = data.toLocaleString("ru", option);
+
                 // К каждой дате добавляем список с возможностью настройки
                 options += '<th data-ish="' + value[1] +  
-                '">' + value[0] + 
+                '">' + data + 
                 '<ul style="position:relative; z-index:1000;">'+
                     '<li class="hide_show">' +
                         '<i class="fa fa-cog"></i>' +
@@ -118,11 +126,26 @@ function getDate(req_upd) {
                         
                         // Если 1 - студент был
                         else if (param['status'] == 1) {
+                           
                             options += '<td data-id=' + param['id'] + 
                             ' data-status=" ' + param['status'] + 
                             '"> <i class="fa fa-check"> </i></td>';
+           
                         }
                         
+                        else if ( 2 <= param['status']  && 
+                        param['status'] <= 5) {
+                            
+                            
+                            options += '<td><select>'
+                            options += '<option value="' + param['id'] +'">' + param['status'] + '</option>';
+                            
+                            for (var i = 2; i <= 5; i++) {
+                                options += '<option value="'+ i + '">' + i + '</option>';
+                            }
+                            options += '</select></td>';
+                        }
+
                         // Иначе записываем как есть
                         else {
                             options += '<td data-id=' + 

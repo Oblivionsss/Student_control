@@ -1,0 +1,28 @@
+/* style for page-rigister */
+html {
+    height: 100%;
+}
+
+
+/* header */
+header {
+    border-bottom: .05rem solid #e5e5e5;
+    border-bottom-width: 0.05rem;
+    border-bottom-style: solid;
+    border-bottom-color: rgb(229, 229, 229);
+}
+/* end header */
+
+
+/* content */
+.content {
+    display: flex;
+    align-items: center;
+}
+  .form-signin {
+    width: 100%;
+    max-width: 330px;
+    padding: 15px;
+    margin: auto;
+  }
+

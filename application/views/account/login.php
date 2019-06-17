@@ -1,39 +1,38 @@
-<div class="auth">
-    
-    <div class="register">
-        <label for="form" class="cols-sm-2 control-label">Авторизация</label>
-        <form id="disc" method="post" action="">
+<link href="/public/style/account/register.css" rel="stylesheet"  type="text/css" media="screen" />	
 
-            <input type="hidden" name="disc" value="t"/>
-    
-            <div class="form-group">
-                <label for="name" class="cols-sm-2 control-label">Логин</label>
-                <div class="cols-sm-10">
-                    <div class="input-group">
-                        <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-                        <input type="text" class="form-control" name="login" value="" placeholder="Введите Ваш логин"/>
-                    </div>
-                </div>
+
+    <!-- header -->
+    <header class="blog-header py-3">
+		<div class="row flex-nowrap justify-content-between align-items-center">
+			<div class="col-4 pt-1">
+			
+			</div>
+			<div class="col-md text-center">
+				<a class="blog-header-logo text-dark" href="#">Система мониторинга студентов РТУ</a>
+			</div>
+			
+			<div class="col-4 d-flex justify-content-end align-items-center">
+				<a class="btn btn-md btn-outline-secondary" href="/">На главную</a>
+                <a class="btn btn-md btn-outline-secondary" href="/account/register">Регистрация</a>
             </div>
+		</div>
+	</header>
+    <!-- end header -->
 
-            <div class="form-group">
-                <label for="name" class="cols-sm-2 control-label">Пароль</label>
-                <div class="cols-sm-10">
-                    <div class="input-group">
-                        <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-                        <input type="password" class="form-control" name="password" value="" placeholder="Введите Ваш пароль"/>
-                    </div>
-                </div>
-            </div>
-
-            <div class="form-group ">
-                <input type="submit" value="Войти" class="btn btn-primary btn-lg btn-block login-buttonl" name="confirm"  placeholder="Войти"/>
-            </div>
-
+    <div class="content text-center h-100">
+        <form class="form-signin bg-light rounded" id="login"    action="/account/login/"    method="POST"> 
+        
+        <h1 class="h3 mb-3 font-weight-normal">Авторизация</h1>
+        
+        <label for="inputEmail">Логин</label>
+        <input type="text"      name="login"    class="form-control" placeholder="Login name" required="" autofocus="">
+        
+        <label for="inputPassword">Пароль</label>
+        <input type="password"  name="password" class="form-control" placeholder="Password" required="">
+            
+        <button class="btn btn-lg btn-primary btn-block mt-3" type="submit">Войти</button>
+        
+        <p class="mt-3 mb-2 text-muted">© 2018-2019</p>
+        
         </form>
-                <div class="form-group ">
-                    <label  class="cols-sm-2 control-label"><a href="/account/register">Регистрация</a></label>
-                </div>
-
     </div>
-</div>

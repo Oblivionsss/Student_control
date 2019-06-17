@@ -1,0 +1,38 @@
+/* style for main-page */
+.mheight {
+    min-height: 100%;
+}
+
+
+
+
+
+/* header */
+.blog-header-logo {
+    font-family: "Playfair Display", Georgia, "Times New Roman", serif;
+    font-size: 2.25rem;
+    line-height: 1;
+}
+/* end header */
+
+
+/* content */
+.align-text-center {
+    text-align: center;
+}
+/* end content */
+
+
+/* Footer */
+.blog-footer {
+    color: #999;
+    text-align: center;
+    background-color: #f9f9f9;
+    border-top: .05rem solid #e5e5e5;
+    font-family: "Playfair Display", Georgia, "Times New Roman", serif;
+}
+  li > a {
+    color: #343a40!important;
+    font-weight: 100;
+  }
+/* end footer */
